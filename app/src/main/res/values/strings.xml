@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">CheckArt</string>
+    <string name="prompt_email">Your Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_up">Sign up</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_google">Log in with google !</string>
+    <string name="welcome">"Welcome To Check Art"</string>
+    <string name="signin_to_continue">"Sign in to continue"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="forget_password">Forgotten password !</string>
+    <string name="incorrect_password"> Oops! Your Password Is Not Correct </string>
+    <string name="login_failed">"Login failed"</string>
+</resources>
