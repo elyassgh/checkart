@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
+import irisi.digitalaube.checkart.userhandler.LoginActivity;
+import maes.tech.intentanim.CustomIntent;
+
+
 public class MainActivity extends Activity {
 
     @Override
@@ -19,6 +23,7 @@ public class MainActivity extends Activity {
             public void run() {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
+                CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                 finish();
             }
         }, 5000);

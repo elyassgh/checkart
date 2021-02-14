@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/background_light">
+
+        <LinearLayout
+            android:paddingBottom="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/stepnbr"
+                android:layout_width="fill_parent"
+                android:layout_height="41dp"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/ic_step"
+                android:drawablePadding="27dp"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="fill_vertical"
+                android:paddingStart="24dp"
+                android:paddingEnd="25dp"
+                android:text="@string/first_step"
+                android:textColor="@color/colorTitle"
+                android:textSize="15sp"
+                tools:layout_editor_absoluteY="445dp" />
+            <TextView
+                android:id="@+id/stepctn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/colorText"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingStart="62dp"
+                android:text="Culpa cillum consectetur labore nulla nulla magna irure. Id veniam culpa officia aute dolor amet deserunt ex proident commodo"
+                tools:ignore="RtlSymmetry" />
+        </LinearLayout>
+</RelativeLayout>

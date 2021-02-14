@@ -3,4 +3,6 @@
     <color name="colorPrimary">#40BFFF</color>
     <color name="colorTitle">#223263</color>
     <color name="colorText">#9098B1</color>
+    <color name="colorDanger">#FB7181</color>
+
 </resources>

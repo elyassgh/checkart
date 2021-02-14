@@ -1,14 +1,35 @@
 <resources>
     <string name="app_name">CheckArt</string>
     <string name="prompt_email">Your Email</string>
+    <string name="prompt_username">Full Name</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_up">Sign up</string>
-    <string name="action_sign_in">Sign in</string>
-    <string name="action_sign_in_google">Log in with google !</string>
+    <string name="prompt_password_rep">Repeat Password</string>
+    <string name="action_sign_up">Sign Up</string>
+    <string name="action_sign_in">Sign In</string>
+    <string name="action_sign_in_google">Log in with google</string>
     <string name="welcome">"Welcome To Check Art"</string>
+    <string name="letsgo">"Let's Get Started"</string>
+    <string name="create_acc">"Welcome To Check Art"</string>
     <string name="signin_to_continue">"Sign in to continue"</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="forget_password">Forgotten password !</string>
     <string name="incorrect_password"> Oops! Your Password Is Not Correct </string>
+    <string name="forget_password">Forgotten password</string>
+    <string name="restore_password">Restore your password</string>
+    <string name="restore">"Restore Password"</string>
+    <string name="diff_pass">Passwords Does Not Match !</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="forget_pass">"Forgotten password ?"</string>
+    <string name="register_txt">"Don’t have an account?"</string>
+    <string name="register">"Register"</string>
+    <string name="already_registred">"Already have an account?"</string>
+    <string name="email_confirmation">"You will receive an email to change your password."</string>
+    <string name="about">About</string>
+    <string name="user_guide">User Guide</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="donate_3"><![CDATA[Donate <3]]></string>
+    <string name="current_version">Current Version</string>
+    <string name="first_step">First Step</string>
+    <string name="check_from_camera">Check From Camera</string>
+
+
 </resources>
