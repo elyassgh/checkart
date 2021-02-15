@@ -7,8 +7,12 @@ import maes.tech.intentanim.CustomIntent;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -73,15 +77,36 @@ public class MenuActivity extends Activity {
         navbar = findViewById(R.id.navbar);
         navbar.setSelectedItemId(R.id.nav_about);
 
-        final View homeNavItem = findViewById(R.id.nav_home);
-        homeNavItem.setOnClickListener(new View.OnClickListener() {
+        navbar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        navigate(HomeActivity.class);
+                        break;
+                    case R.id.nav_explore:
+                        Log.d("NavBar :", "goto about");
+                        break;
+                    case R.id.nav_favorite:
+                        Log.d("NavBar :", "goto favorite");
+                        break;
+                    case R.id.nav_profile:
+                        Log.d("NavBar :", "goto profile");
+                        break;
+                    case R.id.nav_about:
+                        // do nothing :)
+                        break;
+                }
+                return true;
             }
         });
+
+    }
+
+    public void navigate(Class<?> activity) {
+        Intent intent = new Intent(this, activity);
+        startActivity(intent);
+        finish();
     }
 
     @Override

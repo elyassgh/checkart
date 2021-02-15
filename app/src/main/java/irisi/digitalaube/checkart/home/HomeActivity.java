@@ -60,18 +60,37 @@ public class HomeActivity extends Activity {
         navbar = findViewById(R.id.navbar);
         navbar.setSelectedItemId(R.id.nav_home);
 
-        final View aboutNavItem = findViewById(R.id.nav_about);
-        aboutNavItem.setOnClickListener(new View.OnClickListener() {
+        navbar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, MenuActivity.class);
-                startActivity(intent);
-                finish();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        // do nothing :)
+                        break;
+                    case R.id.nav_explore:
+                        Log.d("NavBar", "goto about");
+                        break;
+                    case R.id.nav_favorite:
+                        Log.d("NavBar", "goto favorite");
+                        break;
+                    case R.id.nav_profile:
+                        Log.d("NavBar", "goto profile");
+                        break;
+                    case R.id.nav_about:
+                        navigate(MenuActivity.class);
+                        break;
+                }
+                return true;
             }
         });
 
     }
 
+    public void navigate(Class<?> activity) {
+        Intent intent = new Intent(this, activity);
+        startActivity(intent);
+        finish();
+    }
 
     // Permission handling
     @Override
