@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="irisi.digitalaube.checkart">
 
-    <uses-permission android:name="android.permission.CAMERA"> </uses-permission>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -10,8 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.NoTitleBar">
-        <activity android:name=".home.HomeActivity" />
+        android:theme="@style/AppTheme">
+        <activity android:name=".home.HomeActivity"/>
         <activity android:name=".about.CurrentVersionActivity" />
         <activity android:name=".about.DonateActivity" />
         <activity android:name=".about.PrivacyPolicyActivity" />

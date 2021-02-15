@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="55dp"
         android:background="@drawable/ic_baseline_camera_24"
+        android:contentDescription="Open Camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="Open Camera" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/check"
@@ -42,5 +42,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/check" />
 
+
+    <include
+        android:id="@+id/navigation"
+        layout="@layout/nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

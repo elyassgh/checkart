@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.Objects;
 
 public class HomeActivity extends Activity {
@@ -24,6 +26,7 @@ public class HomeActivity extends Activity {
     private static final int CAMERA_PIC_REQUEST = 1888;
     private static final int CAMERA_PERMISSION_CODE = 100;
     private ImageView test;
+    protected BottomNavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +52,12 @@ public class HomeActivity extends Activity {
         // Display container of the captured image, for demo purposes.
         this.test = (ImageView) findViewById(R.id.test);
 
+
     }
 
     // Permission handling
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
-    {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == CAMERA_PERMISSION_CODE)
         {
@@ -70,6 +73,7 @@ public class HomeActivity extends Activity {
 
     // Get captured image
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_PIC_REQUEST) {
             Bitmap photo = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
             // do something with photo

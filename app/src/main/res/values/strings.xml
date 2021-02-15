@@ -30,6 +30,12 @@
     <string name="current_version">Current Version</string>
     <string name="first_step">First Step</string>
     <string name="check_from_camera">Check From Camera</string>
-
+    <string name="title_home">Home</string>
+    <string name="title_explore">Explore</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_about">About</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
