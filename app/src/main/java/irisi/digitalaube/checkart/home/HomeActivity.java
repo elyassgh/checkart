@@ -2,6 +2,9 @@ package irisi.digitalaube.checkart.home;
 
 import irisi.digitalaube.checkart.R;
 import irisi.digitalaube.checkart.about.MenuActivity;
+import irisi.digitalaube.checkart.explore.ExploreActivity;
+import irisi.digitalaube.checkart.favoris.FavoriteActivity;
+import irisi.digitalaube.checkart.profile.ProfileMenuActivity;
 import maes.tech.intentanim.CustomIntent;
 
 import android.Manifest;
@@ -30,7 +33,6 @@ public class HomeActivity extends Activity {
     private static final int CAMERA_PIC_REQUEST = 1888;
     private static final int CAMERA_PERMISSION_CODE = 100;
     private ImageView test;
-    private BottomNavigationView navbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,7 @@ public class HomeActivity extends Activity {
         this.test = (ImageView) findViewById(R.id.test);
 
         // Navigation
-        navbar = findViewById(R.id.navbar);
+        BottomNavigationView navbar = findViewById(R.id.navbar);
         navbar.setSelectedItemId(R.id.nav_home);
 
         navbar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -68,13 +70,13 @@ public class HomeActivity extends Activity {
                         // do nothing :)
                         break;
                     case R.id.nav_explore:
-                        Log.d("NavBar", "goto about");
+                        navigate(ExploreActivity.class);
                         break;
                     case R.id.nav_favorite:
-                        Log.d("NavBar", "goto favorite");
+                        navigate(FavoriteActivity.class);
                         break;
                     case R.id.nav_profile:
-                        Log.d("NavBar", "goto profile");
+                        navigate(ProfileMenuActivity.class);
                         break;
                     case R.id.nav_about:
                         navigate(MenuActivity.class);
@@ -84,12 +86,6 @@ public class HomeActivity extends Activity {
             }
         });
 
-    }
-
-    public void navigate(Class<?> activity) {
-        Intent intent = new Intent(this, activity);
-        startActivity(intent);
-        finish();
     }
 
     // Permission handling
@@ -117,6 +113,14 @@ public class HomeActivity extends Activity {
             // --> test
             this.test.setImageBitmap(photo);
         }
+    }
+
+
+    // Navigator
+    public void navigate(Class<?> activity) {
+        Intent intent = new Intent(this, activity);
+        startActivity(intent);
+        finish();
     }
 
     @Override

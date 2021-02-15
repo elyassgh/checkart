@@ -1,13 +1,15 @@
 package irisi.digitalaube.checkart.about;
 
 import irisi.digitalaube.checkart.R;
+import irisi.digitalaube.checkart.explore.ExploreActivity;
+import irisi.digitalaube.checkart.favoris.FavoriteActivity;
 import irisi.digitalaube.checkart.home.HomeActivity;
+import irisi.digitalaube.checkart.profile.ProfileMenuActivity;
 import maes.tech.intentanim.CustomIntent;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -17,8 +19,6 @@ import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity extends Activity {
-
-    private BottomNavigationView navbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +74,7 @@ public class MenuActivity extends Activity {
         });
 
         // Navigation
-        navbar = findViewById(R.id.navbar);
+        BottomNavigationView navbar = findViewById(R.id.navbar);
         navbar.setSelectedItemId(R.id.nav_about);
 
         navbar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -85,22 +85,21 @@ public class MenuActivity extends Activity {
                         navigate(HomeActivity.class);
                         break;
                     case R.id.nav_explore:
-                        Log.d("NavBar :", "goto about");
+                        navigate(ExploreActivity.class);
                         break;
                     case R.id.nav_favorite:
-                        Log.d("NavBar :", "goto favorite");
+                        navigate(FavoriteActivity.class);
                         break;
                     case R.id.nav_profile:
-                        Log.d("NavBar :", "goto profile");
+                        navigate(ProfileMenuActivity.class);
                         break;
                     case R.id.nav_about:
-                        // do nothing :)
+                        // do nothing ;)
                         break;
                 }
                 return true;
             }
         });
-
     }
 
     public void navigate(Class<?> activity) {
