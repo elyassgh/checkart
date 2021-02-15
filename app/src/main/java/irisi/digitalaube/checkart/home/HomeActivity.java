@@ -1,6 +1,8 @@
 package irisi.digitalaube.checkart.home;
 
 import irisi.digitalaube.checkart.R;
+import irisi.digitalaube.checkart.about.MenuActivity;
+import maes.tech.intentanim.CustomIntent;
 
 import android.Manifest;
 import android.app.Activity;
@@ -10,6 +12,8 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -26,7 +30,7 @@ public class HomeActivity extends Activity {
     private static final int CAMERA_PIC_REQUEST = 1888;
     private static final int CAMERA_PERMISSION_CODE = 100;
     private ImageView test;
-    protected BottomNavigationView navigationView;
+    private BottomNavigationView navbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +56,22 @@ public class HomeActivity extends Activity {
         // Display container of the captured image, for demo purposes.
         this.test = (ImageView) findViewById(R.id.test);
 
+        // Navigation
+        navbar = findViewById(R.id.navbar);
+        navbar.setSelectedItemId(R.id.nav_home);
+
+        final View aboutNavItem = findViewById(R.id.nav_about);
+        aboutNavItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, MenuActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
+
 
     // Permission handling
     @Override
@@ -82,5 +100,9 @@ public class HomeActivity extends Activity {
         }
     }
 
-
+    @Override
+    public void finish() {
+        super.finish();
+        CustomIntent.customType(this, "fadein-to-fadeout");
+    }
 }

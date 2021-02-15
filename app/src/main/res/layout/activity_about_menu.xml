@@ -37,7 +37,7 @@
 
     <LinearLayout
         android:layout_width="409dp"
-        android:layout_height="600dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
 
         android:layout_marginTop="0dp"
@@ -115,6 +115,14 @@
             tools:layout_editor_absoluteY="445dp" />
 
     </LinearLayout>
+
+    <include
+        android:id="@+id/navigation"
+        layout="@layout/nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

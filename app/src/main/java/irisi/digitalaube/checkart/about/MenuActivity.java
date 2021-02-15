@@ -1,6 +1,7 @@
 package irisi.digitalaube.checkart.about;
 
 import irisi.digitalaube.checkart.R;
+import irisi.digitalaube.checkart.home.HomeActivity;
 import maes.tech.intentanim.CustomIntent;
 
 import android.app.Activity;
@@ -9,7 +10,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class MenuActivity extends Activity {
+
+    private BottomNavigationView navbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +66,20 @@ public class MenuActivity extends Activity {
                 startActivity(intent);
                 // (Back == Return to MenuActivity )
                 CustomIntent.customType(MenuActivity.this, "left-to-right");
+            }
+        });
+
+        // Navigation
+        navbar = findViewById(R.id.navbar);
+        navbar.setSelectedItemId(R.id.nav_about);
+
+        final View homeNavItem = findViewById(R.id.nav_home);
+        homeNavItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
