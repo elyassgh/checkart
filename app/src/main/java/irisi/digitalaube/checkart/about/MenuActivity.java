@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -50,11 +51,11 @@ public class MenuActivity extends Activity {
         });
 
         // Redirect to Donate Activity
-        TextView donate = findViewById(R.id.donate);
-        donate.setOnClickListener(new View.OnClickListener() {
+        TextView test = findViewById(R.id.donate);
+        test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MenuActivity.this, DonateActivity.class);
+               Intent intent = new Intent(MenuActivity.this,DonateActivity.class);
                 startActivity(intent);
                 // (Back == Return to MenuActivity )
                 CustomIntent.customType(MenuActivity.this, "left-to-right");
