@@ -36,8 +36,8 @@
     <string name="title_profile">My Profile</string>
     <string name="title_about">About</string>
     <string name="credit_card_or_debit_card">Credit Card or Debit Card</string>
-    <string name="donate_on_paypal">Donate On Paypal</string>
-    <string name="donate_via_bank_transfer">Donate Via Bank Transfer</string>
+    <string name="donate_on_paypal">Donate on Paypal</string>
+    <string name="donate_via_bank_transfer">Donate via Bank Transfer</string>
     <string name="invalid_card_details">Invalid Card Details</string>
     <string name="card_example">1231 – 2312 – 3123 - 1231</string>
     <string name="card_number">Card Number</string>
@@ -45,5 +45,7 @@
     <string name="ccv">Security Code</string>
     <string name="date_example">02/28</string>
     <string name="code_example">123</string>
+    <string name="dummy_title">Tapis berber du moyenne atlas tapis berber du moyenne atlas</string>
+    <string name="what_s_new">What\'s new :</string>
 
 </resources>

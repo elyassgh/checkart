@@ -37,7 +37,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:paddingStart="25dp"
                 android:layout_marginBottom="15dp"
-                android:text="What's new :"
+                android:text="@string/what_s_new"
                 tools:ignore="RtlSymmetry" />
 
             <TextView
