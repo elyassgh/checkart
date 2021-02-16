@@ -104,6 +104,7 @@
         android:fontFamily="@font/poppins_bold"
         android:text="@string/incorrect_password"
         android:textColor="@color/colorDanger"
+        android:visibility="invisible"
 
         android:textSize="12sp"
         android:layout_marginStart="22dp"
@@ -116,7 +117,6 @@
         android:layout_marginHorizontal="20dp"
         android:layout_height="57dp"
         android:background="@drawable/btn_bg"
-        android:elevation="30dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/action_sign_in"
         android:textAllCaps="false"
@@ -155,7 +155,6 @@
         android:textAllCaps="false"
         android:textColor="@color/colorText"
         android:background="@drawable/light_btn_bg"
-        tools:layout_editor_absoluteY="445dp"
         android:layout_marginTop="15dp"
 
         android:paddingStart="35dp"
@@ -210,7 +209,8 @@
             android:text="@string/register"
             android:textColor="@color/colorPrimary"
             android:textSize="12sp"
-            android:clickable="true" />
+            android:clickable="true"
+            android:focusable="true" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -219,12 +219,12 @@
         android:id="@+id/geuestlogin"
         android:layout_width="fill_parent"
         android:layout_marginHorizontal="20dp"
-        android:layout_height="20dp"
+        android:layout_height="25dp"
+        android:textSize="8sp"
         android:fontFamily="@font/poppins_bold"
         android:text="Login as a guest >"
         android:textColor="@color/colorTitle"
         android:background="#FFF"
-        tools:layout_editor_absoluteY="445dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

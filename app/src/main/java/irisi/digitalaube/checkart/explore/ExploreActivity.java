@@ -8,8 +8,6 @@ import irisi.digitalaube.checkart.profile.ProfileMenuActivity;
 import maes.tech.intentanim.CustomIntent;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;

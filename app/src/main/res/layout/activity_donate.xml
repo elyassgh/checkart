@@ -6,4 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".about.DonateActivity">
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="45dp"
+        android:drawableStart="@drawable/ic_back"
+        android:drawablePadding="12dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/donate_3"
+        android:textColor="@color/colorTitle"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/separator"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="0dp"
+        android:layout_marginTop="108dp"
+        android:background="@drawable/ic_separator_empty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_marginTop="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/separator">
+
+        <TextView
+            android:id="@+id/card"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="0dp"
+            android:background="#FFF"
+            android:drawableLeft="@drawable/ic_card"
+            android:drawablePadding="25dp"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingStart="30dp"
+            android:paddingEnd="25dp"
+            android:text="@string/credit_card_or_debit_card"
+            android:textSize="14sp"
+            android:clickable="true"
+            android:textColor="@color/colorTitle"
+            android:gravity="fill_vertical"
+            tools:layout_editor_absoluteY="445dp"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/paypal"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:background="#FFF"
+            android:drawableLeft="@drawable/ic_paypal"
+            android:drawablePadding="25dp"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingStart="30dp"
+            android:paddingEnd="25dp"
+            android:text="@string/donate_on_paypal"
+            android:textSize="14dp"
+            android:textColor="@color/colorTitle"
+            android:gravity="fill_vertical"
+            tools:layout_editor_absoluteY="445dp" />
+
+        <TextView
+            android:id="@+id/bank"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:background="#FFF"
+            android:drawableLeft="@drawable/ic_bank"
+            android:drawablePadding="25dp"
+            android:fontFamily="@font/poppins_bold"
+            android:paddingStart="30dp"
+            android:paddingEnd="25dp"
+            android:text="@string/donate_via_bank_transfer"
+            android:textSize="14dp"
+            android:textColor="@color/colorTitle"
+            android:gravity="fill_vertical"
+            tools:layout_editor_absoluteY="445dp" />
+
+    </LinearLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
