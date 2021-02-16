@@ -18,6 +18,7 @@
     <string name="restore">"Restore Password"</string>
     <string name="diff_pass">Passwords Does Not Match !</string>
     <string name="login_failed">"Login failed"</string>
+<<<<<<< HEAD
     <string name="forget_pass">"Forgotten password ?"</string>
     <string name="register_txt">"Don’t have an account?"</string>
     <string name="register">"Register"</string>
@@ -49,4 +50,25 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+=======
+
+
+
+    <string name="privacy">Privacy Policy</string>
+    <string name="privacy_axe_1">Axe N° 01</string>
+    <string name="privacy_art_1">Article N° 01</string>
+    <string name="privacy_art_1_desc">En grammaire traditionnelle, l’article a plusieurs définitions. Selon l’une d’elles, c’est une partie du discours à fonction grammaticale, qui accompagne le nom dans certaines langues, indiquant dans quelle mesure ce que celui-ci dénomme est connu des participants à une situation de communication donnée.</string>
+    <string name="privacy_art_2">Article N° 02</string>
+    <string name="privacy_art_2_desc">En grammaire traditionnelle, l’article a plusieurs définitions. Selon l’une d’elles, c’est une partie du discours à fonction grammaticale, qui accompagne le nom dans certaines langues, indiquant dans quelle mesure ce que celui-ci dénomme est connu des participants à une situation de communication donnée.</string>
+
+    <string name="user_guide">User Guide</string>
+    <string name="user_guide_step_1">Step 1</string>
+    <string name="user_guide_step_2">Step 2</string>
+    <string name="user_guide_step_3">Step 3</string>
+    <string name="user_guide_step_4">Step 4</string>
+    <string name="user_guide_step_1_desc">Hello world, we are team digitalaube and this is the first step</string>
+    <string name="user_guide_step_2_desc">Hello world, we are team digitalaube and this is the second step</string>
+    <string name="user_guide_step_3_desc">Hello world, we are team digitalaube and this is the third step</string>
+    <string name="user_guide_step_4_desc">Hello world, we are team digitalaube and this is the fourth step</string>
+>>>>>>> 020e806398cfea28f1d586c10f2da367eadc9886
 </resources>

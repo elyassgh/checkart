@@ -43,7 +43,7 @@ public class DonateActivity extends Activity {
                 startActivity(Intent.createChooser(i, "Title"));
             }
         });
-        
+
         title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

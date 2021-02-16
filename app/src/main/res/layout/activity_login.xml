@@ -32,7 +32,11 @@
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/create_acc"
+=======
+        android:id="@+id/userguide"
+>>>>>>> 020e806398cfea28f1d586c10f2da367eadc9886
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
@@ -68,7 +72,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/create_acc"
+=======
+        app:layout_constraintTop_toBottomOf="@+id/userguide"
+>>>>>>> 020e806398cfea28f1d586c10f2da367eadc9886
         />
 
     <EditText
