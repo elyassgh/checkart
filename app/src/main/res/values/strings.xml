@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">CheckArt</string>
     <string name="prompt_email">Your Email</string>
     <string name="prompt_username">Full Name</string>
@@ -18,16 +18,23 @@
     <string name="restore">"Restore Password"</string>
     <string name="diff_pass">Passwords Does Not Match !</string>
     <string name="login_failed">"Login failed"</string>
-<<<<<<< HEAD
+    <string name="donate">Donate</string>
+    <string name="creditcard">Credit Card Or Debit</string>
+    <string name="paypal">Paypal</string>
+    <string name="bank">Banck Transfer</string>
+    <string name="prompt_bank">Nom de votre banque</string>
+    <string name="prompt_numcompte">N° de votre compte</string>
+    <string name="prompt_montant">Montant(MAD)</string>
+    <string name="prompt_transfer">Effectuer un transfer</string>
+<HEAD>
     <string name="forget_pass">"Forgotten password ?"</string>
     <string name="register_txt">"Don’t have an account?"</string>
     <string name="register">"Register"</string>
     <string name="already_registred">"Already have an account?"</string>
     <string name="email_confirmation">"You will receive an email to change your password."</string>
     <string name="about">About</string>
-    <string name="user_guide">User Guide</string>
+    <string name="user_guide1" tools:ignore="DuplicateDefinition">User Guide</string>
     <string name="privacy_policy">Privacy Policy</string>
-    <string name="donate_3"><![CDATA[Donate]]></string>
     <string name="current_version">Current Version</string>
     <string name="first_step">First Step</string>
     <string name="check_from_camera">Check From Camera</string>
@@ -36,14 +43,6 @@
     <string name="title_favorite">My Favorite</string>
     <string name="title_profile">My Profile</string>
     <string name="title_about">About</string>
-    <string name="creditcard">Credit Card Or Debit</string>
-    <string name="paypal">Paypal</string>
-    <string name="bank">Banck Transfer</string>
-    <string name="prompt_bank">Nom de votre banque</string>
-    <string name="prompt_numcompte">N° de votre compte</string>
-    <string name="prompt_montant">Montant(MAD)</string>
-    <string name="prompt_transfer">Effectuer un transfer</string>
-
 
 
 
@@ -70,5 +69,5 @@
     <string name="user_guide_step_2_desc">Hello world, we are team digitalaube and this is the second step</string>
     <string name="user_guide_step_3_desc">Hello world, we are team digitalaube and this is the third step</string>
     <string name="user_guide_step_4_desc">Hello world, we are team digitalaube and this is the fourth step</string>
->>>>>>> 020e806398cfea28f1d586c10f2da367eadc9886
+</HEAD> 020e806398cfea28f1d586c10f2da367eadc9886
 </resources>

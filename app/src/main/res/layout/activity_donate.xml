@@ -14,7 +14,7 @@
         android:layout_marginTop="45dp"
         android:drawableStart="@drawable/ic_back"
         android:fontFamily="@font/poppins_bold"
-        android:text="@string/donate_3"
+        android:text="@string/donate"
         android:textColor="@color/colorTitle"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
