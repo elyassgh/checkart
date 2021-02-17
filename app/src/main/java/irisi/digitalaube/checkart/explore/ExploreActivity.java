@@ -147,7 +147,7 @@ public class ExploreActivity extends Activity {
 
             View view  = inflater.inflate(R.layout.explore_item, layout, false);
 
-            LinearLayout explore_item = findViewById(R.id.exp_item);
+            LinearLayout explore_item = view.findViewById(R.id.exp_item);
             final int finalI = i;
             explore_item.setOnClickListener(new View.OnClickListener() {
                 @Override
