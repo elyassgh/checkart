@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".favoris.FavoriteItemActivity">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="45dp"
+        android:drawableStart="@drawable/ic_back"
+        android:drawablePadding="12dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/title_favorite"
+        android:textColor="@color/colorTitle"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/separator"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="0dp"
+        android:layout_marginTop="108dp"
+        android:background="@drawable/ic_separator_empty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="109dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/separator"
+        android:weightSum="1">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            app:cardCornerRadius="20dp"
+            android:layout_margin="25dp"
+            android:elevation="10dp"
+            android:minHeight="20dp"
+            android:layout_height="0dp"
+            android:layout_weight=".5">
+
+            <ImageView
+                android:id="@+id/fav_item_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/tapis"
+                android:layout_gravity="center"
+                android:background="#EEE"
+                android:scaleType="centerCrop" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/col1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:textSize="12.5sp"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/picture_matches"
+            android:layout_weight=".08"
+            android:gravity="center_vertical"/>
+
+        <ListView
+            android:id="@+id/fav_item_lv_matches"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:layout_weight=".15">
+        </ListView>
+
+        <TextView
+            android:id="@+id/col2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:textSize="12.5sp"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/colors_in_this_picture"
+            android:layout_weight=".08"
+            android:gravity="center_vertical"/>
+
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:orientation="horizontal"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/fav_item_lv_colors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:paddingVertical="10dp"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
