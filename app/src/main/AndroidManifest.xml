@@ -11,12 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".about.BankTransferActivity"></activity>
-        <activity android:name=".about.PaymentActivity"></activity>
         <activity android:name=".profile.ProfileMenuActivity" />
+        <activity android:name=".favoris.FavoriteItemActivity" />
         <activity android:name=".favoris.FavoriteActivity" />
         <activity android:name=".explore.ExploreActivity" />
         <activity android:name=".home.HomeActivity" />
+        <activity android:name=".about.BankTransferActivity" />
+        <activity android:name=".about.PaymentActivity" />
         <activity android:name=".about.CurrentVersionActivity" />
         <activity android:name=".about.DonateActivity" />
         <activity android:name=".about.PrivacyPolicyActivity" />

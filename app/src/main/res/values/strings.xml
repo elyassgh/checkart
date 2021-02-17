@@ -47,5 +47,9 @@
     <string name="code_example">123</string>
     <string name="dummy_title">Tapis berber du moyenne atlas tapis berber du moyenne atlas</string>
     <string name="what_s_new">What\'s new :</string>
+    <string name="picture_matches">This picture matches :</string>
+    <string name="colors_in_this_picture">Colors in this picture :</string>
+    <string name="tapis_dummy">Tapis Beni Ouarraine :</string>
+    <string name="percentage">%</string>
 
 </resources>
