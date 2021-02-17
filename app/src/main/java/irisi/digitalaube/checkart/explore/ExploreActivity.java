@@ -143,7 +143,7 @@ public class ExploreActivity extends Activity {
     // Explore Items Renderer
     public void renderExploreItems (final Object[][] exploreResult, LayoutInflater inflater, LinearLayout rightSet, LinearLayout leftSet) {
         for (int i=0 ; i < exploreResult.length ; i++) {
-            LinearLayout layout = (i % 2 == 0) ? leftSet : rightSet;
+            LinearLayout layout = (i % 2 == 0) ? rightSet : leftSet;
 
             View view  = inflater.inflate(R.layout.explore_item, layout, false);
 
