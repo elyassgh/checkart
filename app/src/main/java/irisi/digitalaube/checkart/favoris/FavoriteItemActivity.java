@@ -36,8 +36,6 @@ public class FavoriteItemActivity extends Activity {
         title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (FavoriteItemActivity.this, FavoriteActivity.class);
-                startActivity(intent);
                 finish();
             }
         });
@@ -69,12 +67,12 @@ public class FavoriteItemActivity extends Activity {
                 ImageButton imageButton = view.findViewById(R.id.color);
                 imageButton.setBackgroundColor(Color.parseColor(COLOR_PREFIX + colorInPicture));
 
-                // Navigate to Explore with selected color in search query :
+                // do something with selected color in search query (Ex. Navigate to Explore) :
                 imageButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         // TO-DO Later --> Go to Explore Activity
-                        Toast.makeText(FavoriteItemActivity.this, "go to explore with : " + colorInPicture , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FavoriteItemActivity.this, "do something with : " + colorInPicture , Toast.LENGTH_SHORT).show();
                     }
                 });
 

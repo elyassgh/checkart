@@ -13,6 +13,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -62,6 +64,19 @@ public class FavoriteActivity extends Activity {
 
         FavListAdapter myAdapter = new FavListAdapter(this, dummyFavlist);
         lv.setAdapter(myAdapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(FavoriteActivity.this, FavoriteItemActivity.class);
+                // Passing clicked item to redirect to item details pages
+                intent.putExtra("fav_item" , dummyFavlist[position]);
+                FavoriteActivity.this.startActivity(intent);
+                // (Back == Return to Favorite Activity )
+                CustomIntent.customType(FavoriteActivity.this, "left-to-right");
+            }
+        });
+
 
         // Navigation
         BottomNavigationView navbar = findViewById(R.id.navbar);

@@ -59,32 +59,6 @@ public class FavListAdapter extends BaseAdapter {
         TextView item_title = (TextView) listItemView.findViewById(R.id.item_title);
         item_title.setText( (String) listItem[1]);
 
-        // Image Or Title Click listener --> Redirect to Favorite Item Details
-        item_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, FavoriteItemActivity.class);
-                // Passing clicked item to redirect to item details pages
-                intent.putExtra("fav_item" , listItem);
-                context.startActivity(intent);
-                // (Back == Return to Favorite Activity )
-                CustomIntent.customType(context, "left-to-right");
-            }
-        });
-        item_title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Notice !!! ---> Duplicated code ! , Require Re-do
-                Intent intent = new Intent(context, FavoriteItemActivity.class);
-                // Passing clicked item to redirect to item details pages
-                intent.putExtra("fav_item" , listItem);
-                context.startActivity(intent);
-                // (Back == Return to Favorite Activity )
-                CustomIntent.customType(context, "left-to-right");
-            }
-        });
-
-
         ImageView delete = (ImageView) listItemView.findViewById(R.id.delete);
         // Delete Icon Click --> delete item from favorite :
         delete.setOnClickListener(new View.OnClickListener() {

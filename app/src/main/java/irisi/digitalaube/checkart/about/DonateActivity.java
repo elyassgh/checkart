@@ -25,8 +25,6 @@ public class DonateActivity extends Activity {
         title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (DonateActivity.this, MenuActivity.class);
-                startActivity(intent);
                 finish();
             }
         });

@@ -51,5 +51,9 @@
     <string name="colors_in_this_picture">Colors in this picture :</string>
     <string name="tapis_dummy">Tapis Beni Ouarraine :</string>
     <string name="percentage">%</string>
+    <string name="search_by_color">Search By color :</string>
+    <string name="nothing_found">No picture Found !</string>
+    <string name="we_didn_t_find_any_picture_maching_this_color">We didn’t find any picture matching this color.</string>
+    <string name="action_back">Back To Home</string>
 
 </resources>

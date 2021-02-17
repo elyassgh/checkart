@@ -11,6 +11,8 @@ import maes.tech.intentanim.CustomIntent;
 import androidx.annotation.NonNull;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,6 +21,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -55,6 +58,10 @@ public class ExploreActivity extends Activity {
             "BDBDBD", "9E9E9E", "757575", "616161", "424242", "212121", "90A4AE", "78909C", "607D8B", "546E7A", "455A64", "37474F",
             "ECEFF1", "CFD8DC", "B0BEC5", "263238", "000000", };
 
+    private AlertDialog.Builder builder;
+    private TextView count;
+    private LinearLayout emptySpan;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +70,14 @@ public class ExploreActivity extends Activity {
         final LinearLayout search_colors = findViewById(R.id.colorSearch);
         final LinearLayout rightSet = findViewById(R.id.resultSet_even);
         final LinearLayout leftSet = findViewById(R.id.resultSet_odd);
+        final LayoutInflater inflater = LayoutInflater.from(this);
 
-        // static data for demo purposes
+        builder = new AlertDialog.Builder(this);
+
+        count = findViewById(R.id.result_counter);
+        emptySpan = findViewById(R.id.emptyspan);
+
+        // static data for demo purposes -----------------------------------------------------------
         Bitmap dummyImg = BitmapFactory.decodeResource(this.getResources(), R.drawable.tapis);
         final Object [][] exploreResult = {
                 {dummyImg , "Lorem1 Ipsum dolor sit ammet sacred bit qest", "#1"},
@@ -75,8 +88,19 @@ public class ExploreActivity extends Activity {
                 {dummyImg , "Lorem6 Ipsum dolor sit ammet sacred bit qest", "#6"},
                 {dummyImg , "Lorem7 Ipsum dolor sit ammet sacred bit qest", "#7"},
         };
+        final Object [][] exploreResult2 = {
+                {dummyImg , "Lorem1 Ipsum dolor sit ammet sacred bit qest", "#1"},
+                {dummyImg , "Lorem2 Ipsum dolor sit ammet sacred bit qest", "#2"},
+        };
+        final Object [][] exploreResult3 = {
+                {dummyImg , "Lorem1 Ipsum dolor sit ammet sacred bit qest", "#1"},
+                {dummyImg , "Lorem2 Ipsum dolor sit ammet sacred bit qest", "#2"},
+                {dummyImg , "Lorem3 Ipsum dolor sit ammet sacred bit qest", "#3"},
+        };
+        final Object [][] exploreResultEmpty = {};
+        // -----------------------------------------------------------------------------------------
 
-        final LayoutInflater inflater = LayoutInflater.from(this);
+
         // Render color palette search UI
         for (final String searchColor : color_palette) {
             View view  = inflater.inflate(R.layout.color_btn, search_colors, false);
@@ -92,15 +116,34 @@ public class ExploreActivity extends Activity {
 
                     // TO-DO Explore Query
 
+                    // demo : ----------------------------------------
+                        // get explore result --> delete later
+                        Object [][] result;
+                        switch (searchColor) {
+                            case "FFEBEE":
+                                result = exploreResult;
+                                break;
+                            case "FFCDD2":
+                                result = exploreResult2;
+                                break;
+                            case "EF9A9A":
+                                result = exploreResult3;
+                                break;
+                            default:
+                                result = exploreResultEmpty;
+                                break;
+                        }
+                    // demo .  ----------------------------------------
+
+                    // render explore result in UI
+                    renderExploreItems(result, inflater , rightSet , leftSet);
+
                     Toast.makeText(ExploreActivity.this, "Explore pictures matches : " + searchColor , Toast.LENGTH_SHORT).show();
                 }
             });
 
             search_colors.addView(view);
         }
-
-        // Render dummy result set :
-        renderExploreItems(exploreResult, inflater , rightSet , leftSet);
 
 
         // Navigation
@@ -142,30 +185,84 @@ public class ExploreActivity extends Activity {
 
     // Explore Items Renderer
     public void renderExploreItems (final Object[][] exploreResult, LayoutInflater inflater, LinearLayout rightSet, LinearLayout leftSet) {
-        for (int i=0 ; i < exploreResult.length ; i++) {
-            LinearLayout layout = (i % 2 == 0) ? rightSet : leftSet;
 
-            View view  = inflater.inflate(R.layout.explore_item, layout, false);
+        // Clear views
+        rightSet.removeAllViews();
+        leftSet.removeAllViews();
+        emptySpan.removeAllViews();
 
-            LinearLayout explore_item = view.findViewById(R.id.exp_item);
-            final int finalI = i;
-            explore_item.setOnClickListener(new View.OnClickListener() {
+        // Handle empty result :
+        if (exploreResult.length != 0) {
+
+            // Clear empty span
+            emptySpan.setVisibility(View.GONE);
+
+            for (int i=0 ; i < exploreResult.length ; i++) {
+                LinearLayout layout = (i % 2 == 0) ? rightSet : leftSet;
+                View view  = inflater.inflate(R.layout.explore_item, layout, false);
+
+                LinearLayout explore_item = view.findViewById(R.id.exp_item);
+                final int finalI = i;
+                explore_item.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Do some thing with Explore Item Click
+                        //Setting dialog message and performing action on button click (YES/NO)
+                        builder.setMessage("Do you want to add this item from your favorite list ?")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        //  Action for 'YES' Button
+
+                                        // Do Add Favorite Item to favorite list Query !!
+
+                                        dialog.cancel();
+                                        Toast.makeText(ExploreActivity.this, "Item : " + (String) exploreResult[finalI][2] + " Added.", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        //  Action for 'NO' Button
+                                        dialog.cancel();
+                                        Toast.makeText(ExploreActivity.this, "Nothing : " +(String) exploreResult[finalI][2], Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                        //Creating dialog box
+                        AlertDialog alert = builder.create();
+                        //Setting the title
+                        alert.setTitle("Add to Favorite");
+                        alert.show();
+
+                    }
+                });
+
+                ImageView image = view.findViewById(R.id.exp_item_img);
+                image.setImageBitmap( (Bitmap) exploreResult[i][0] );
+
+                TextView title = view.findViewById(R.id.exp_item_title);
+                title.setText( (String) exploreResult[i][1] );
+
+                layout.addView(view);
+            }
+        } else {
+            // Render nothing found view
+            View nothing_found_view  = inflater.inflate(R.layout.nothing_found, emptySpan, false);
+
+            Button home_action = nothing_found_view.findViewById(R.id.back);
+            home_action.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Do some thing with Explore Item Click
-                    // TO-DO Prompt add to favorite dialog box !
-                    Toast.makeText(ExploreActivity.this, (String) exploreResult[finalI][2], Toast.LENGTH_SHORT).show();
+                    navigate(HomeActivity.class);
                 }
             });
 
-            ImageView image = view.findViewById(R.id.exp_item_img);
-            image.setImageBitmap( (Bitmap) exploreResult[i][0] );
-
-            TextView title = view.findViewById(R.id.exp_item_title);
-            title.setText( (String) exploreResult[i][1] );
-
-            layout.addView(view);
+            emptySpan.addView(nothing_found_view);
+            emptySpan.setVisibility(View.VISIBLE);
+            Toast.makeText(ExploreActivity.this, "Nothing Found !" , Toast.LENGTH_SHORT).show();
         }
+
+        count.setText(String.valueOf(exploreResult.length).concat(" Results"));
+
     }
 
     @Override

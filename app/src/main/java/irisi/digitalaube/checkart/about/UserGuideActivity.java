@@ -42,8 +42,6 @@ public class UserGuideActivity extends Activity {
         title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (UserGuideActivity.this, MenuActivity.class);
-                startActivity(intent);
                 finish();
             }
         });

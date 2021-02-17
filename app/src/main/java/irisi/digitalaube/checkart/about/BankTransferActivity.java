@@ -21,8 +21,6 @@ public class BankTransferActivity extends Activity {
         title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (BankTransferActivity.this, DonateActivity.class);
-                startActivity(intent);
                 finish();
             }
         });

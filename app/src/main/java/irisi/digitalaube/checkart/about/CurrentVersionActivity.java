@@ -39,8 +39,6 @@ public class CurrentVersionActivity extends Activity {
         title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (CurrentVersionActivity.this, MenuActivity.class);
-                startActivity(intent);
                 finish();
             }
         });
