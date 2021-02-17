@@ -142,18 +142,19 @@ public class ExploreActivity extends Activity {
 
     // Explore Items Renderer
     public void renderExploreItems (final Object[][] exploreResult, LayoutInflater inflater, LinearLayout rightSet, LinearLayout leftSet) {
-        for (final int i=0 ; i < exploreResult.length ; i++) {
+        for (int i=0 ; i < exploreResult.length ; i++) {
             LinearLayout layout = (i % 2 == 0) ? leftSet : rightSet;
 
             View view  = inflater.inflate(R.layout.explore_item, layout, false);
 
             LinearLayout explore_item = findViewById(R.id.exp_item);
+            final int finalI = i;
             explore_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // Do some thing with Explore Item Click
                     // TO-DO Prompt add to favorite dialog box !
-                    Toast.makeText(ExploreActivity.this, (String) exploreResult[i][2], Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ExploreActivity.this, (String) exploreResult[finalI][2], Toast.LENGTH_SHORT).show();
                 }
             });
 
