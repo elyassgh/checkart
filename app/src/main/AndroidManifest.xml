@@ -11,6 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".profile.PasswordPickerActivity"></activity>
+        <activity android:name=".profile.PhonePickerActivity" />
+        <activity android:name=".profile.EmailPickerActivity" />
+        <activity android:name=".profile.BirthdayPickerActivity" />
+        <activity android:name=".profile.GenderPickerActivity" />
+        <activity android:name=".profile.ProfileActivity" />
         <activity android:name=".profile.ProfileMenuActivity" />
         <activity android:name=".favoris.FavoriteItemActivity" />
         <activity android:name=".favoris.FavoriteActivity" />

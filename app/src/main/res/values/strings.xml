@@ -55,5 +55,13 @@
     <string name="nothing_found">No picture Found !</string>
     <string name="we_didn_t_find_any_picture_maching_this_color">We didn’t find any picture matching this color.</string>
     <string name="action_back">Back To Home</string>
+    <string name="profile">Profile</string>
+    <string name="sample_username">Elghazi Ilyass</string>
+    <string name="sample_user_id">\@elyassgh</string>
+    <string name="gender">Gender</string>
+    <string name="birthday">Birthday</string>
+    <string name="mail">E-Mail</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="change_password">Change Password</string>
 
 </resources>
