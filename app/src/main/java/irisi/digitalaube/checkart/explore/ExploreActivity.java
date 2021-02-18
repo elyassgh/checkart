@@ -3,7 +3,6 @@ package irisi.digitalaube.checkart.explore;
 import irisi.digitalaube.checkart.R;
 import irisi.digitalaube.checkart.about.MenuActivity;
 import irisi.digitalaube.checkart.favoris.FavoriteActivity;
-import irisi.digitalaube.checkart.favoris.FavoriteItemActivity;
 import irisi.digitalaube.checkart.home.HomeActivity;
 import irisi.digitalaube.checkart.profile.ProfileMenuActivity;
 import maes.tech.intentanim.CustomIntent;
@@ -67,6 +66,12 @@ public class ExploreActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore);
 
+        // get Loaded User In memory : ------------------
+        Bundle extras = getIntent().getExtras();
+        assert extras != null;
+        // Object[] user_in_memory = (Object[]) extras.get("LOGGED_IN_USER");
+        // ---------------------------------------------------
+
         final LinearLayout search_colors = findViewById(R.id.colorSearch);
         final LinearLayout rightSet = findViewById(R.id.resultSet_even);
         final LinearLayout leftSet = findViewById(R.id.resultSet_odd);
@@ -76,6 +81,7 @@ public class ExploreActivity extends Activity {
 
         count = findViewById(R.id.result_counter);
         emptySpan = findViewById(R.id.emptyspan);
+
 
         // static data for demo purposes -----------------------------------------------------------
         Bitmap dummyImg = BitmapFactory.decodeResource(this.getResources(), R.drawable.tapis);
@@ -101,6 +107,7 @@ public class ExploreActivity extends Activity {
         // -----------------------------------------------------------------------------------------
 
 
+
         // Render color palette search UI
         for (final String searchColor : color_palette) {
             View view  = inflater.inflate(R.layout.color_btn, search_colors, false);
@@ -114,7 +121,7 @@ public class ExploreActivity extends Activity {
                 @Override
                 public void onClick(View v) {
 
-                    // TO-DO Explore Query
+                    // TO-DO Explore Query (With COLOR Hex Value)
 
                     // demo : ----------------------------------------
                         // get explore result --> delete later
@@ -179,6 +186,8 @@ public class ExploreActivity extends Activity {
     // Navigator
     public void navigate(Class<?> activity) {
         Intent intent = new Intent(this, activity);
+        // pass logged in user : -------------------------------
+        // intent.putExtra("LOGGED_IN_USER" , USER_OBJECT_HERE );
         startActivity(intent);
         finish();
     }
@@ -214,7 +223,7 @@ public class ExploreActivity extends Activity {
                                     public void onClick(DialogInterface dialog, int id) {
                                         //  Action for 'YES' Button
 
-                                        // Do Add Favorite Item to favorite list Query !!
+                                        // TO-DO Add Favorite Item to favorite list Query !!
 
                                         dialog.cancel();
                                         Toast.makeText(ExploreActivity.this, "Item : " + (String) exploreResult[finalI][2] + " Added.", Toast.LENGTH_SHORT).show();

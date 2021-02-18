@@ -25,6 +25,12 @@ public class namePickerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name_picker);
 
+        // get Loaded User In memory : ------------------
+        Bundle extras = getIntent().getExtras();
+        assert extras != null;
+        // Object[] user_in_memory = (Object[]) extras.get("LOGGED_IN_USER");
+        // ---------------------------------------------------
+
         // Return to Profile Activity
         TextView title = findViewById(R.id.title);
         title.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +42,14 @@ public class namePickerActivity extends Activity {
 
         full_name = findViewById(R.id.full_name);
 
+        // demo : ----------------------------------
         full_name.setText( (String) in_memory_user[0] );
+        // demo . ----------------------------------
+
+        // In implementation : ----------------------
+        // if null replace with empty string !
+        // birthday.setText( (String) user_in_memory.getFullName() );
+        // ------------------------------------------
 
         // Submit Button
         Button save = findViewById(R.id.savebtn);

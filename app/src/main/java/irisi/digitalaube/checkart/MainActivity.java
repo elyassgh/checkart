@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
                 CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                 finish();
             }
-        }, 2000);
+        }, 1500);
 
     }
 }

@@ -16,6 +16,12 @@ public class ProfileActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        // get Loaded User In memory : ------------------
+        Bundle extras = getIntent().getExtras();
+        assert extras != null;
+        // Object[] user_in_memory = (Object[]) extras.get("LOGGED_IN_USER");
+        // ---------------------------------------------------
+
         // Return to About Menu Activity
         TextView title = findViewById(R.id.title);
         title.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +37,8 @@ public class ProfileActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileActivity.this, namePickerActivity.class);
+                // pass logged in user : -------------------------------
+                // intent.putExtra("LOGGED_IN_USER" , USER_OBJECT_HERE );
                 startActivity(intent);
                 // (Back == Return to ProfileMenuActivity )
                 CustomIntent.customType(ProfileActivity.this, "left-to-right");
@@ -43,6 +51,8 @@ public class ProfileActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileActivity.this, BirthdayPickerActivity.class);
+                // pass logged in user : -------------------------------
+                // intent.putExtra("LOGGED_IN_USER" , USER_OBJECT_HERE );
                 startActivity(intent);
                 // (Back == Return to ProfileMenuActivity )
                 CustomIntent.customType(ProfileActivity.this, "left-to-right");
@@ -55,6 +65,8 @@ public class ProfileActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileActivity.this, EmailPickerActivity.class);
+                // pass logged in user : -------------------------------
+                // intent.putExtra("LOGGED_IN_USER" , USER_OBJECT_HERE );
                 startActivity(intent);
                 // (Back == Return to ProfileMenuActivity )
                 CustomIntent.customType(ProfileActivity.this, "left-to-right");
@@ -67,6 +79,8 @@ public class ProfileActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileActivity.this, PhonePickerActivity.class);
+                // pass logged in user : -------------------------------
+                // intent.putExtra("LOGGED_IN_USER" , USER_OBJECT_HERE );
                 startActivity(intent);
                 // (Back == Return to ProfileMenuActivity )
                 CustomIntent.customType(ProfileActivity.this, "left-to-right");
@@ -79,6 +93,8 @@ public class ProfileActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileActivity.this, PasswordPickerActivity.class);
+                // pass logged in user : -------------------------------
+                // intent.putExtra("LOGGED_IN_USER" , USER_OBJECT_HERE );
                 startActivity(intent);
                 // (Back == Return to ProfileMenuActivity )
                 CustomIntent.customType(ProfileActivity.this, "left-to-right");

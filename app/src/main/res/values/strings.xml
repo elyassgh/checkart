@@ -10,9 +10,11 @@
     <string name="welcome">"Welcome To Check Art"</string>
     <string name="letsgo">"Let's Get Started"</string>
     <string name="create_acc">"Welcome To Check Art"</string>
+    <string name="email_not_found">"Email Not Found !"</string>
+    <string name="username_not_found">"Username Not Found !"</string>
     <string name="signin_to_continue">"Sign in to continue"</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="incorrect_password"> Oops! Your Password Is Not Correct </string>
+    <string name="incorrect_password"> Oops! Your Password Is Not Correct !</string>
     <string name="forget_password">Forgotten password</string>
     <string name="restore_password">Restore your password</string>
     <string name="restore">"Restore Password"</string>
@@ -23,7 +25,7 @@
     <string name="register_txt">"Don’t have an account?"</string>
     <string name="register">"Register"</string>
     <string name="already_registred">"Already have an account?"</string>
-    <string name="email_confirmation">"You will receive an email to change your password."</string>
+    <string name="email_confirmation">"*You will receive an email to change your password."</string>
     <string name="about">About</string>
     <string name="user_guide">User Guide</string>
     <string name="privacy_policy">Privacy Policy</string>
@@ -67,5 +69,7 @@
     <string name="save">Save</string>
     <string name="your_user_id">Your User Id</string>
     <string name="old_password">Old Password</string>
+    <string name="user_name">User name</string>
+    <string name="email_uname_doesnt_match">Email and Username Does Not Match !</string>
 
 </resources>

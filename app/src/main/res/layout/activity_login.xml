@@ -104,7 +104,9 @@
         android:fontFamily="@font/poppins_bold"
         android:text="@string/incorrect_password"
         android:textColor="@color/colorDanger"
-        android:visibility="invisible"
+        android:gravity="center"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@drawable/ic_baseline_error_outline_24"
 
         android:textSize="12sp"
         android:layout_marginStart="22dp"
@@ -121,7 +123,6 @@
         android:text="@string/action_sign_in"
         android:textAllCaps="false"
         android:textColor="#FFF"
-        tools:layout_editor_absoluteY="445dp"
         android:shadowColor="@color/colorPrimary"
 
         android:layout_marginTop="35dp"

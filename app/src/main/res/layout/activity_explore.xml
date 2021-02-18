@@ -93,9 +93,7 @@
             android:layout_marginStart="25dp"
             android:textColor="@color/colorText"
             android:fontFamily="@font/poppins_bold"
-            android:textSize="12sp"
-            android:text="0 Result"
-            />
+            android:textSize="12sp" />
 
         <ScrollView
             android:id="@+id/result"

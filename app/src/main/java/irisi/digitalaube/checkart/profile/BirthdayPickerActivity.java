@@ -33,6 +33,13 @@ public class BirthdayPickerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_birthday_picker);
 
+        // get Loaded User In memory : ------------------
+        Bundle extras = getIntent().getExtras();
+        assert extras != null;
+        // Object[] user_in_memory = (Object[]) extras.get("LOGGED_IN_USER");
+        // ---------------------------------------------------
+
+
         // Return to Profile Activity
         TextView title = findViewById(R.id.title);
         title.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +54,14 @@ public class BirthdayPickerActivity extends Activity {
 
         birthday = findViewById(R.id.birthday);
 
+        // demo :  ----------------------------------
         birthday.setText( (String) in_memory_user[2]);
+        // demo . ----------------------------------
+
+        // In implementation : ----------------------
+        // if null replace with empty string !
+        // birthday.setText( (String) user_in_memory.getBirthday() );
+        // ------------------------------------------
 
         birthday.setOnClickListener(new View.OnClickListener() {
             @Override

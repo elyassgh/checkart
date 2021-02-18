@@ -25,6 +25,14 @@ public class EmailPickerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_picker);
 
+        // get Loaded User In memory : ------------------
+        Bundle extras = getIntent().getExtras();
+        assert extras != null;
+        // Object[] user_in_memory = (Object[]) extras.get("LOGGED_IN_USER");
+        // ---------------------------------------------------
+
+
+
         // Return to Profile Activity
         TextView title = findViewById(R.id.title);
         title.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +44,13 @@ public class EmailPickerActivity extends Activity {
 
         email = findViewById(R.id.email);
 
+        // demo : ----------------------------------
         email.setText( (String) in_memory_user[1] );
+        // demo . ----------------------------------
+
+        // In implementation : ----------------------
+        // birthday.setText( (String) user_in_memory.getEmail() );
+        // ------------------------------------------
 
         // Submit Button
         Button save = findViewById(R.id.savebtn);

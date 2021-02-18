@@ -38,6 +38,12 @@ public class HomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // get Loaded User In memory : ------------------
+        Bundle extras = getIntent().getExtras();
+        assert extras != null;
+        // Object[] user_in_memory = (Object[]) extras.get("LOGGED_IN_USER");
+        // ---------------------------------------------------
+
         // Open the camera
         ImageButton openCam = findViewById(R.id.cam);
         openCam.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +124,8 @@ public class HomeActivity extends Activity {
     // Navigator
     public void navigate(Class<?> activity) {
         Intent intent = new Intent(this, activity);
+        // pass logged in user : -------------------------------
+        // intent.putExtra("LOGGED_IN_USER" , USER_OBJECT_HERE );
         startActivity(intent);
         finish();
     }

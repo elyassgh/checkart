@@ -25,6 +25,12 @@ public class PhonePickerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_picker);
 
+        // get Loaded User In memory : ------------------
+        Bundle extras = getIntent().getExtras();
+        assert extras != null;
+        // Object[] user_in_memory = (Object[]) extras.get("LOGGED_IN_USER");
+        // ---------------------------------------------------
+
         // Return to Profile Activity
         TextView title = findViewById(R.id.title);
         title.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +42,14 @@ public class PhonePickerActivity extends Activity {
 
         phone_number = findViewById(R.id.phone_number);
 
+        // demo : ----------------------------------
         phone_number.setText( (String) in_memory_user[3] );
+        // demo . ----------------------------------
+
+        // In implementation : ----------------------
+        // if null replace with empty string !
+        // birthday.setText( (String) user_in_memory.getPhoneNumber() );
+        // ------------------------------------------
 
         // Submit Button
         Button save = findViewById(R.id.savebtn);

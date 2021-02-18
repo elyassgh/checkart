@@ -44,7 +44,7 @@
         android:fontFamily="@font/poppins_bold"
         android:text="@string/birthday"
         android:textColor="@color/colorTitle"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/separator" />
 

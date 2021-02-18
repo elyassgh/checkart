@@ -25,6 +25,12 @@ public class MenuActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_menu);
 
+        // get Loaded User In memory : ------------------
+        Bundle extras = getIntent().getExtras();
+        assert extras != null;
+        // Object[] user_in_memory = (Object[]) extras.get("LOGGED_IN_USER");
+        // ---------------------------------------------------
+
         // Redirect to User Guide Activity
         TextView guide = findViewById(R.id.guide);
         guide.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +110,8 @@ public class MenuActivity extends Activity {
 
     public void navigate(Class<?> activity) {
         Intent intent = new Intent(this, activity);
+        // pass logged in user : -------------------------------
+        // intent.putExtra("LOGGED_IN_USER" , USER_OBJECT_HERE );
         startActivity(intent);
         finish();
     }

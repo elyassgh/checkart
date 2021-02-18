@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/user_name"
         android:layout_width="fill_parent"
         android:layout_marginHorizontal="20dp"
         android:layout_height="48dp"
@@ -63,7 +63,7 @@
         android:paddingEnd="5dp"
         android:drawableStart="@drawable/ic_user"
 
-        android:hint="@string/prompt_username"
+        android:hint="@string/user_name"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -95,7 +95,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/user_name"
         />
 
     <EditText
@@ -124,7 +124,7 @@
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <EditText
-        android:id="@+id/passrep"
+        android:id="@+id/pass_rep"
         android:layout_width="fill_parent"
         android:layout_marginHorizontal="20dp"
         android:layout_height="48dp"
@@ -160,7 +160,7 @@
         android:textSize="12sp"
         android:layout_marginStart="22dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passrep" />
+        app:layout_constraintTop_toBottomOf="@+id/pass_rep" />
 
     <Button
         android:id="@+id/signupbtn"

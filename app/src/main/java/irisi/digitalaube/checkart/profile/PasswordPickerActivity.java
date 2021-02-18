@@ -28,6 +28,13 @@ public class PasswordPickerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_picker);
 
+        // get Loaded User In memory : ------------------
+        Bundle extras = getIntent().getExtras();
+        assert extras != null;
+        // Object[] user_in_memory = (Object[]) extras.get("LOGGED_IN_USER");
+        // ---------------------------------------------------
+
+
         // Return to Profile Activity
         TextView title = findViewById(R.id.title);
         title.setOnClickListener(new View.OnClickListener() {
@@ -68,11 +75,24 @@ public class PasswordPickerActivity extends Activity {
                     return;
                 } else {
                     // Verify old password is correct
+
+                    // demo  : -------------------------------------------------------
                     if (!old_password.equals(in_memory_user[4])) {
                         wrong_span.setText(getString(R.string.incorrect_password));
                         wrong_span.setVisibility(View.VISIBLE);
                         return;
                     }
+                    // demo  . -------------------------------------------------------
+
+
+                    // In implementation : -------------------------------------------
+                    /* if (!old_password.equals(in_memory_user.getPassword())) {
+                        wrong_span.setText(getString(R.string.incorrect_password));
+                        wrong_span.setVisibility(View.VISIBLE);
+                        return;
+                    } *///--------------------------------------------------------------
+
+
                     // Inputs are ok
                     wrong_span.setVisibility(View.INVISIBLE);
                 }
