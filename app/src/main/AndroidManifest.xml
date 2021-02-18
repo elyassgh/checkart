@@ -15,7 +15,7 @@
         <activity android:name=".profile.PhonePickerActivity" />
         <activity android:name=".profile.EmailPickerActivity" />
         <activity android:name=".profile.BirthdayPickerActivity" />
-        <activity android:name=".profile.GenderPickerActivity" />
+        <activity android:name=".profile.namePickerActivity" />
         <activity android:name=".profile.ProfileActivity" />
         <activity android:name=".profile.ProfileMenuActivity" />
         <activity android:name=".favoris.FavoriteItemActivity" />

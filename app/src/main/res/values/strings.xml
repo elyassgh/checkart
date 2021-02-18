@@ -17,6 +17,7 @@
     <string name="restore_password">Restore your password</string>
     <string name="restore">"Restore Password"</string>
     <string name="diff_pass">Passwords Does Not Match !</string>
+    <string name="invalid_password">Invalid Password !</string>
     <string name="login_failed">"Login failed"</string>
     <string name="forget_pass">"Forgotten password ?"</string>
     <string name="register_txt">"Don’t have an account?"</string>
@@ -58,10 +59,13 @@
     <string name="profile">Profile</string>
     <string name="sample_username">Elghazi Ilyass</string>
     <string name="sample_user_id">\@elyassgh</string>
-    <string name="gender">Gender</string>
+    <string name="name">Name</string>
     <string name="birthday">Birthday</string>
     <string name="mail">E-Mail</string>
     <string name="phone_number">Phone Number</string>
     <string name="change_password">Change Password</string>
+    <string name="save">Save</string>
+    <string name="your_user_id">Your User Id</string>
+    <string name="old_password">Old Password</string>
 
 </resources>

@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class EmailPickerActivity extends Activity {
+public class namePickerActivity extends Activity {
 
     // demo user : ---------------------------------------------------------------------------------
 
@@ -18,12 +18,12 @@ public class EmailPickerActivity extends Activity {
 
     // demo user . ---------------------------------------------------------------------------------
 
-    private EditText email;
+    private EditText full_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_email_picker);
+        setContentView(R.layout.activity_name_picker);
 
         // Return to Profile Activity
         TextView title = findViewById(R.id.title);
@@ -34,9 +34,9 @@ public class EmailPickerActivity extends Activity {
             }
         });
 
-        email = findViewById(R.id.email);
+        full_name = findViewById(R.id.full_name);
 
-        email.setText( (String) in_memory_user[1] );
+        full_name.setText( (String) in_memory_user[0] );
 
         // Submit Button
         Button save = findViewById(R.id.savebtn);
@@ -44,9 +44,9 @@ public class EmailPickerActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                String new_email = email.getText().toString();
+                String new_full_name = full_name.getText().toString();
 
-                // TO-DO Update Email Query
+                // TO-DO Full-Name Update Query
 
             }
         });

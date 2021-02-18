@@ -25,12 +25,12 @@ public class ProfileActivity extends Activity {
             }
         });
 
-        // Redirect to Gender Chooser Activity :
-        TextView genderPicker = findViewById(R.id.genderPicker);
-        genderPicker.setOnClickListener(new View.OnClickListener() {
+        // Redirect to Name Changer Activity :
+        TextView namePicker = findViewById(R.id.namePicker);
+        namePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfileActivity.this, GenderPickerActivity.class);
+                Intent intent = new Intent(ProfileActivity.this, namePickerActivity.class);
                 startActivity(intent);
                 // (Back == Return to ProfileMenuActivity )
                 CustomIntent.customType(ProfileActivity.this, "left-to-right");

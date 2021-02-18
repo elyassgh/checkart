@@ -109,17 +109,17 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_card">
 
         <TextView
-            android:id="@+id/genderPicker"
+            android:id="@+id/namePicker"
             android:layout_width="fill_parent"
             android:layout_height="55dp"
             android:background="#FFF"
-            android:drawableLeft="@drawable/ic_gender"
+            android:drawableLeft="@drawable/ic_buser"
             android:drawableRight="@drawable/ic_right"
             android:drawablePadding="25dp"
             android:fontFamily="@font/poppins_bold"
             android:paddingStart="30dp"
             android:paddingEnd="25dp"
-            android:text="@string/gender"
+            android:text="@string/name"
             android:textSize="14sp"
             android:clickable="true"
             android:textColor="@color/colorTitle"
