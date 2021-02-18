@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ProfileActivity extends Activity {
@@ -21,6 +22,19 @@ public class ProfileActivity extends Activity {
         assert extras != null;
         // Object[] user_in_memory = (Object[]) extras.get("LOGGED_IN_USER");
         // ---------------------------------------------------
+
+        // User credentials :
+        ImageView user_img = findViewById(R.id.user_img);
+        TextView user_fullName = findViewById(R.id.user_fullname);
+        TextView user_name = findViewById(R.id.user_name);
+
+
+        // In implementation : -------------------------------------------
+        // user_img.setImageBitmap((Bitmap) user_in_memory.getBitmapImage() );
+        // user_fullName.setText((String) user_in_memory.getFullName() );
+        // user_name.setText((String) user_in_memory.getUsername() );
+        // ---------------------------------------------------------------
+
 
         // Return to About Menu Activity
         TextView title = findViewById(R.id.title);

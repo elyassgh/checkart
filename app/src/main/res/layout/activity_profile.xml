@@ -56,7 +56,7 @@
             app:cardCornerRadius="75dp">
 
             <ImageView
-                android:id="@+id/item_img"
+                android:id="@+id/user_img"
                 android:src="@drawable/profile_pic"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"/>
@@ -72,7 +72,7 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/user_name"
+                android:id="@+id/user_fullname"
                 android:textSize="14sp"
                 android:layout_marginHorizontal="5dp"
                 android:fontFamily="@font/poppins_bold"
@@ -83,7 +83,7 @@
                 android:layout_gravity="start"/>
 
             <TextView
-                android:id="@+id/user_id"
+                android:id="@+id/user_name"
                 android:textSize="11.5sp"
                 android:layout_marginHorizontal="5dp"
                 android:fontFamily="@font/poppins_light"
