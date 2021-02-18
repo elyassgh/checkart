@@ -129,6 +129,8 @@ public class LoginActivity extends Activity {
 
                 // Don't forget : Load user in memory + error handling
 
+                Toast.makeText(LoginActivity.this,"do something with google",Toast.LENGTH_SHORT).show();
+
             }
         });
     }

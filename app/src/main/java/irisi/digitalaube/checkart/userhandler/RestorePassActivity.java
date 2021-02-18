@@ -61,8 +61,8 @@ public class RestorePassActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                user_name = name.getTransitionName().toString();
-                user_email = email.getTransitionName().toString();
+                user_name = name.getText().toString();
+                user_email = email.getText().toString();
 
 
                 // TO-DO : Restore Password Query
