@@ -50,7 +50,7 @@ public class ProfileActivity extends Activity {
         namePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfileActivity.this, namePickerActivity.class);
+                Intent intent = new Intent(ProfileActivity.this, NamePickerActivity.class);
                 // pass logged in user : -------------------------------
                 // intent.putExtra("LOGGED_IN_USER" , USER_OBJECT_HERE );
                 startActivity(intent);

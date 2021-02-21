@@ -71,5 +71,6 @@
     <string name="old_password">Old Password</string>
     <string name="user_name">User name</string>
     <string name="email_uname_doesnt_match">Email and Username Does Not Match !</string>
+    <string name="already_used">Email already used</string>
 
 </resources>
