@@ -113,7 +113,8 @@ public class LoginActivity extends Activity {
                         break;
                     case 2 :
                         // do something
-                        Toast.makeText(LoginActivity.this,"do something",Toast.LENGTH_SHORT).show();
+                        // network error !
+                        Toast.makeText(LoginActivity.this,"Server unreachable !",Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
