@@ -13,14 +13,20 @@ import android.widget.Toast;
 import java.util.Set;
 
 import irisi.digitalaube.checkart.R;
+import irisi.digitalaube.checkart.api.model.User;
+import irisi.digitalaube.checkart.api.service.UserService;
+import irisi.digitalaube.checkart.api.serviceImp.Result;
+import irisi.digitalaube.checkart.api.serviceImp.UserServiceImpl;
 import irisi.digitalaube.checkart.home.HomeActivity;
 import maes.tech.intentanim.CustomIntent;
+import retrofit2.Call;
 
 public class LoginActivity extends Activity {
 
     private String user_email;
     private String user_password;
     private TextView wrong_span;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,25 +88,32 @@ public class LoginActivity extends Activity {
                 user_email = email.getText().toString();
                 user_password = password.getText().toString();
 
+                Result result;
 
                 // TO-DO Login Query
+                if (! user_email.isEmpty() && !user_password.isEmpty() ) {
+                    result = UserServiceImpl.login(user_email, user_password);
+                } else {
+                    wrong_span.setText(R.string.email_pass_empty);
+                    wrong_span.setVisibility(View.VISIBLE);
+                    return;
+                }
 
 
                 // Return Integers for example ( -1 == email not found , 0 == success, 1 == password error , 2== ... etc)
                 // --> handling errors:
 
-                // ---- demo result  : -----
-                int[] results = {-1,0,1,2};
-                int status = (int)(Math.random()*results.length);
-                // ---- demo result  . -----
 
-                switch (status) {
+                switch (result.getStatus()) {
                     case -1 :
                         wrong_span.setText(getString(R.string.email_not_found));
                         wrong_span.setVisibility(View.VISIBLE);
                         break;
                     case 0 :
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+
+                        Log.d("USER", result.getUser().toString() );
+
                         // in success Load user in memory : ------------------
                         // intent.putExtra("LOGGED_IN_USER" , USER_OBJECT_HERE );
                         // ---------------------------------------------------
@@ -141,4 +154,5 @@ public class LoginActivity extends Activity {
         super.finish();
         CustomIntent.customType(this, "fadein-to-fadeout");
     }
+
 }
