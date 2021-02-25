@@ -4,6 +4,7 @@ import android.util.Base64;
 import android.util.Log;
 
 import java.io.IOException;
+import java.security.Principal;
 
 import irisi.digitalaube.checkart.api.Server;
 import irisi.digitalaube.checkart.api.model.User;
