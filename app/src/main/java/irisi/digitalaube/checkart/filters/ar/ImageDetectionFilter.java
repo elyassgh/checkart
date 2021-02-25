@@ -134,14 +134,14 @@ public final class ImageDetectionFilter implements ARFilter {
 
         SqlTable sql = new SqlTable(context,"imgs",null,1);
 
-       /* sql.deleteDb();
+      sql.deleteDb();
         for (int i = 0; i< referenceImageResourceIDs.length; i++){
 
             sql.dbput("hello"+i,Utils.loadResource(context,
                     referenceImageResourceIDs[i],
                     Imgcodecs.CV_LOAD_IMAGE_COLOR));
             Log.i(TAG, "That Works" + i);
-        } */
+        }
 
 
 
