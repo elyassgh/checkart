@@ -71,6 +71,8 @@
     <string name="old_password">Old Password</string>
     <string name="user_name">User name</string>
     <string name="email_uname_doesnt_match">Email and Username Does Not Match !</string>
+    <string name="already_used">Email already used</string>
+    <string name="email_pass_empty">Email Or Password is not set !</string>
 
     <string name="menu_next_image_detection_filter">Next Tracker</string>
     <string name="menu_next_camera">Next Camera</string>

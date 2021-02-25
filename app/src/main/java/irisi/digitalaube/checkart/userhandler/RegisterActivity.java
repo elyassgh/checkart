@@ -2,14 +2,19 @@ package irisi.digitalaube.checkart.userhandler;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 import irisi.digitalaube.checkart.R;
+import irisi.digitalaube.checkart.database.CheckArtDbHelper;
 import irisi.digitalaube.checkart.home.HomeActivity;
 import maes.tech.intentanim.CustomIntent;
 
@@ -21,10 +26,14 @@ public class RegisterActivity extends Activity {
     private String user_password_rep;
     private TextView wrong_span;
 
+    private CheckArtDbHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        dbHelper = new CheckArtDbHelper(this);
 
         //Redirect to login activity
         TextView signIn = findViewById(R.id.signin);
@@ -74,20 +83,18 @@ public class RegisterActivity extends Activity {
                 wrong_span.setVisibility(View.INVISIBLE);
 
 
+                int status = 2;
+
+
                 // TO-DO : Register Query ( If Success automatic login )
 
 
-                // Return Integers for example ( -1 == email already exist , 0 == success, 1 == user name already exist , 2 == password error , 3 == ... etc)
+                // Return Integers for example ( -1 == email already exist , 0 == success, 1 == user name already exist , 2 == ... etc)
                 // --> handling errors:
-
-                // ---- demo result  : -----
-                int[] results = {-1,0,1,2,3};
-                int status = (int)(Math.random()*results.length);
-                // ---- demo result  . -----
 
                 switch (status) {
                     case -1 :
-                        wrong_span.setText(getString(R.string.email_not_found));
+                        wrong_span.setText(R.string.already_used);
                         wrong_span.setVisibility(View.VISIBLE);
                         break;
                     case 0 :
@@ -104,14 +111,9 @@ public class RegisterActivity extends Activity {
                         wrong_span.setVisibility(View.VISIBLE);
                         break;
                     case 2 :
-                        // ex : Invalid password -- Server side ?!
-                        wrong_span.setText(getString(R.string.invalid_password));
-                        wrong_span.setVisibility(View.VISIBLE);
-                        break;
-                    case 3 :
-                        // Server side verifications
+                        // Other database side verifications
                         // do something
-                        Toast.makeText(RegisterActivity.this,"do something",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this,"Something Went Wrong - Error !",Toast.LENGTH_SHORT).show();
                         break;
                 }
 
