@@ -1,6 +1,16 @@
 ECLIPSE ANDROID PROJECT IMPORT SUMMARY
 ======================================
 
+Risky Project Location:
+-----------------------
+The tools *should* handle project locations in any directory. However,
+due to bugs, placing projects in directories containing spaces in the
+path, or characters like ", ' and &, have had issues. We're working to
+eliminate these bugs, but to save yourself headaches you may want to
+move your project to a location where this is not a problem.
+C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart
+                 -                                    
+
 Ignored Files:
 --------------
 The following files were *not* copied into the new Gradle project; you
@@ -14,25 +24,17 @@ so manually move them:
 * javadoc\help-doc.html
 * javadoc\index-all.html
 * javadoc\index.html
-* javadoc\mymath.js
 * javadoc\org\
 * javadoc\org\opencv\
 * javadoc\org\opencv\android\
 * javadoc\org\opencv\android\BaseLoaderCallback.html
-* javadoc\org\opencv\android\Camera2Renderer.html
 * javadoc\org\opencv\android\CameraBridgeViewBase.CvCameraViewFrame.html
 * javadoc\org\opencv\android\CameraBridgeViewBase.CvCameraViewListener.html
 * javadoc\org\opencv\android\CameraBridgeViewBase.CvCameraViewListener2.html
 * javadoc\org\opencv\android\CameraBridgeViewBase.ListItemAccessor.html
 * javadoc\org\opencv\android\CameraBridgeViewBase.html
-* javadoc\org\opencv\android\CameraGLRendererBase.html
-* javadoc\org\opencv\android\CameraGLSurfaceView.CameraTextureListener.html
-* javadoc\org\opencv\android\CameraGLSurfaceView.html
-* javadoc\org\opencv\android\CameraRenderer.html
 * javadoc\org\opencv\android\FpsMeter.html
 * javadoc\org\opencv\android\InstallCallbackInterface.html
-* javadoc\org\opencv\android\JavaCamera2View.JavaCameraSizeAccessor.html
-* javadoc\org\opencv\android\JavaCamera2View.html
 * javadoc\org\opencv\android\JavaCameraView.JavaCameraSizeAccessor.html
 * javadoc\org\opencv\android\JavaCameraView.html
 * javadoc\org\opencv\android\LoaderCallbackInterface.html
@@ -73,7 +75,6 @@ so manually move them:
 * javadoc\org\opencv\core\MatOfPoint3f.html
 * javadoc\org\opencv\core\MatOfRect.html
 * javadoc\org\opencv\core\MatOfRect2d.html
-* javadoc\org\opencv\core\MatOfRotatedRect.html
 * javadoc\org\opencv\core\Point.html
 * javadoc\org\opencv\core\Point3.html
 * javadoc\org\opencv\core\Range.html
@@ -95,6 +96,10 @@ so manually move them:
 * javadoc\org\opencv\dnn\package-frame.html
 * javadoc\org\opencv\dnn\package-summary.html
 * javadoc\org\opencv\dnn\package-tree.html
+* javadoc\org\opencv\engine\
+* javadoc\org\opencv\engine\package-frame.html
+* javadoc\org\opencv\engine\package-summary.html
+* javadoc\org\opencv\engine\package-tree.html
 * javadoc\org\opencv\features2d\
 * javadoc\org\opencv\features2d\AKAZE.html
 * javadoc\org\opencv\features2d\AgastFeatureDetector.html
@@ -113,7 +118,6 @@ so manually move them:
 * javadoc\org\opencv\features2d\MSER.html
 * javadoc\org\opencv\features2d\ORB.html
 * javadoc\org\opencv\features2d\Params.html
-* javadoc\org\opencv\features2d\SimpleBlobDetector.html
 * javadoc\org\opencv\features2d\package-frame.html
 * javadoc\org\opencv\features2d\package-summary.html
 * javadoc\org\opencv\features2d\package-tree.html
@@ -124,9 +128,6 @@ so manually move them:
 * javadoc\org\opencv\imgcodecs\package-tree.html
 * javadoc\org\opencv\imgproc\
 * javadoc\org\opencv\imgproc\CLAHE.html
-* javadoc\org\opencv\imgproc\GeneralizedHough.html
-* javadoc\org\opencv\imgproc\GeneralizedHoughBallard.html
-* javadoc\org\opencv\imgproc\GeneralizedHoughGuil.html
 * javadoc\org\opencv\imgproc\Imgproc.html
 * javadoc\org\opencv\imgproc\LineSegmentDetector.html
 * javadoc\org\opencv\imgproc\Moments.html
@@ -158,7 +159,6 @@ so manually move them:
 * javadoc\org\opencv\objdetect\CascadeClassifier.html
 * javadoc\org\opencv\objdetect\HOGDescriptor.html
 * javadoc\org\opencv\objdetect\Objdetect.html
-* javadoc\org\opencv\objdetect\QRCodeDetector.html
 * javadoc\org\opencv\objdetect\package-frame.html
 * javadoc\org\opencv\objdetect\package-summary.html
 * javadoc\org\opencv\objdetect\package-tree.html
@@ -181,6 +181,7 @@ so manually move them:
 * javadoc\org\opencv\photo\Photo.html
 * javadoc\org\opencv\photo\Tonemap.html
 * javadoc\org\opencv\photo\TonemapDrago.html
+* javadoc\org\opencv\photo\TonemapDurand.html
 * javadoc\org\opencv\photo\TonemapMantiuk.html
 * javadoc\org\opencv\photo\TonemapReinhard.html
 * javadoc\org\opencv\photo\package-frame.html
@@ -229,11 +230,11 @@ Moved Files:
 Android Gradle projects use a different directory structure than ADT
 Eclipse projects. Here's how the projects were restructured:
 
-* AndroidManifest.xml => openCVLibrary349\src\main\AndroidManifest.xml
-* lint.xml => openCVLibrary349\lint.xml
-* res\ => openCVLibrary349\src\main\res\
-* src\ => openCVLibrary349\src\main\java\
-* src\org\opencv\engine\OpenCVEngineInterface.aidl => openCVLibrary349\src\main\aidl\org\opencv\engine\OpenCVEngineInterface.aidl
+* AndroidManifest.xml => openCVLibrary340\src\main\AndroidManifest.xml
+* lint.xml => openCVLibrary340\lint.xml
+* res\ => openCVLibrary340\src\main\res\
+* src\ => openCVLibrary340\src\main\java\
+* src\org\opencv\engine\OpenCVEngineInterface.aidl => openCVLibrary340\src\main\aidl\org\opencv\engine\OpenCVEngineInterface.aidl
 
 Next Steps:
 -----------
