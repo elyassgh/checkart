@@ -1,42 +1,5 @@
 -- Merging decision tree log ---
 manifest
-<<<<<<< HEAD
-ADDED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
-INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
-INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
-INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
-INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
-INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
-INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
-	package
-		ADDED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml:3:7-27
-		INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-	android:versionName
-		ADDED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml:5:7-34
-		INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-	xmlns:android
-		ADDED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:11-69
-	android:versionCode
-		ADDED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml:4:7-33
-		INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-uses-sdk
-INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-	android:targetSdkVersion
-		INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-		ADDED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-	android:minSdkVersion
-		INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-		ADDED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\AndroidManifest.xml
-=======
 ADDED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
 INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
 INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
@@ -72,4 +35,3 @@ INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\An
 		INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
 		ADDED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
->>>>>>> acc38f0abcc3534e983baaa0ccce451c7b4c360a

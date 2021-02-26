@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\main\shaders"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\LATITUDE E7450\AndroidStudioProjects\checkart\openCVLibrary340\src\debug\shaders"/></dataSet></merger>
-=======
 <merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\shaders"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\debug\shaders"/></dataSet></merger>
->>>>>>> acc38f0abcc3534e983baaa0ccce451c7b4c360a
