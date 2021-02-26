@@ -13,10 +13,11 @@ public class Tapis {
     private int w1;
     private int w2;
     private int w3;
-    private byte[] photo;
+    private String photo;
     private String uri;
 
-    public Tapis(String nom, String description, float taille, String couleur, int w1, int w2, byte[] photo, String uri) {
+
+    public Tapis(String nom, String description, float taille, String couleur, int w1, int w2, String photo, String uri) {
         this.nom = nom;
         this.description = description;
         this.taille = taille;
@@ -111,11 +112,11 @@ public class Tapis {
         this.w3 = w3;
     }
 
-    public byte[] getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 

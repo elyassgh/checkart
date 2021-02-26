@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.AbstractWindowedCursor;
 import android.database.Cursor;
 import android.database.CursorWindow;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Paint.Cap;
 import android.os.Build.VERSION_CODES;
+import android.util.Base64;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
@@ -141,8 +144,9 @@ public final class ImageDetectionFilter implements ARFilter {
         // Load the reference image from the app's resources.
         // It is loaded in BGR (blue, green, red) format.
 
-
-        UserServiceImpl.getTapis().enqueue(new Callback<List<Tapis>>() {
+        CheckArtDbHelper sql = new CheckArtDbHelper(context);
+        sql.deleteDb();
+      /*  UserServiceImpl.getTapis().enqueue(new Callback<List<Tapis>>() {
             @Override
             public void onResponse(Call<List<Tapis>> call, Response<List<Tapis>> response) {
                 if (!response.isSuccessful()) {
@@ -154,16 +158,19 @@ public final class ImageDetectionFilter implements ARFilter {
 
                 for(Tapis t: tapis){
 
-                    Log.i(TAG, "tapis "+ t.getNom());
-                    Log.i(TAG, "tapis "+ t.getPhoto());
-                    Log.i(TAG, "tapis "+ t.getDescription());
-                    Log.i(TAG, "tapis "+ t.getCouleur());
-                    Log.i(TAG, "tapis "+ t.getTaille());
-                    Log.i(TAG, "tapis "+ t.getUri());
+                    Log.i(TAG, "tapis Nom "+ t.getNom());
+                    Log.i(TAG, "tapis Desc "+ t.getDescription());
+                    Log.i(TAG, "tapis Couleur "+ t.getCouleur());
+                    Log.i(TAG, "tapis Taille "+ t.getTaille());
+                    Log.i(TAG, "tapis Uri "+ t.getUri());
+                    if(t.getPhoto() != null){
+                        Log.i(TAG, "tapis Photo "+ t.getPhoto());
 
-
-
-
+                        byte[] decodedString = Base64.decode(t.getPhoto(), Base64.DEFAULT);
+                    Bitmap img = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                    Mat mat_img = new Mat();
+                    Utils.bitmapToMat(img, mat_img);
+                    sql.dbput(t,mat_img);}
 
                 }
 
@@ -171,13 +178,12 @@ public final class ImageDetectionFilter implements ARFilter {
             }
             @Override
             public void onFailure(Call<List<Tapis>> call, Throwable t) {
-                Log.i(TAG, "failure");
+                Log.i(TAG, "failure "+ t.getMessage());
 
             }
         });
+*/
 
-        CheckArtDbHelper sql = new CheckArtDbHelper(context);
-        sql.deleteDb();
 
         Tapis tapis1 = new Tapis();
         tapis1.setNom("TAPIS BENI OUARAIN KILIM");
@@ -216,7 +222,7 @@ public final class ImageDetectionFilter implements ARFilter {
         tapis3.setTaille(25);
         tapis3.setUri("azilal");
         sql.dbput(tapis3,Utils.loadResource(context,
-                referenceImageResourceIDs[2],
+                referenceImageResourceIDs[4],
                 Imgcodecs.CV_LOAD_IMAGE_COLOR) );
 
       /* //
@@ -293,7 +299,7 @@ public final class ImageDetectionFilter implements ARFilter {
 
     @Override
     public TapisFound apply(final Mat src, final Mat dst) {
-
+        mTargetFound = false;
         // Convert the scene to grayscale.
         Imgproc.cvtColor(src, mGraySrc, Imgproc.COLOR_RGBA2GRAY);
 
@@ -309,7 +315,6 @@ public final class ImageDetectionFilter implements ARFilter {
 //////////////Check in local
         for(int i =0; i< dbReferencesImages.size(); i++ ) {
             this.tapisFound = new TapisFound();
-            tapisFound.setTapisMat(dbReferencesImages.get(i));
             mReferenceImage = dbReferencesImages.get(i).getMat();
             // Create grayscale and RGBA versions of the reference image.
             final Mat referenceImageGray = new Mat();
@@ -393,11 +398,12 @@ public final class ImageDetectionFilter implements ARFilter {
             findPose();
             if(mTargetFound){
                 tapisFound.setFound(true);
+                tapisFound.setTapisMat(dbReferencesImages.get(i));
                 return tapisFound;
             }
-
+            tapisFound.setFound(false);
+            tapisFound.setTapisMat(null);
         }
-        tapisFound.setFound(false);
         return tapisFound;
     }
 
