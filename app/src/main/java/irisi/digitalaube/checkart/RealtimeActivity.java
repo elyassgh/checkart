@@ -271,12 +271,13 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
     @SuppressLint("SimpleDateFormat")
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        Log.i(TAG, "onTouch event");
+     /*   Log.i(TAG, "onTouch event");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         String currentDateandTime = sdf.format(new Date());
         String fileName = Environment.getExternalStorageDirectory().getPath() +
                 "/sample_picture_" + currentDateandTime + ".jpg";
         mOpenCvCameraView.takePicture(fileName);
+        */
         return true;
 
 

@@ -147,7 +147,7 @@ public final class ImageDetectionFilter implements ARFilter {
             public void onResponse(Call<List<Tapis>> call, Response<List<Tapis>> response) {
                 if (!response.isSuccessful()) {
 
-                    Log.i(TAG, "Code: " + response.code());
+                    Log.i(TAG, "CodeError: " + response.code());
                     return;
                 }
                 List<Tapis> tapis = response.body();

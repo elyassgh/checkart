@@ -1,3 +1,4 @@
 include ':app'
 rootProject.name = "CheckArt"
 include ':openCVLibrary340'
+include ':openCVLibrary340'
