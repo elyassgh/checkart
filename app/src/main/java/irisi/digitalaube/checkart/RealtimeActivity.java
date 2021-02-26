@@ -60,13 +60,13 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
                     mOpenCvCameraView.enableView();
                     mOpenCvCameraView.setOnTouchListener(RealtimeActivity.this);
                     //Put data in database
-                    int[] tapis = {R.drawable.tapis10,R.drawable.tapis31, R.drawable.tapis12, R.drawable.tapis1,
+                    int[] tapis = {R.drawable.tapis10,R.drawable.tapis21, R.drawable.tapis12, R.drawable.tapis1,
                             R.drawable.tapis2, R.drawable.tapis3, R.drawable.tapis4,
                             R.drawable.tapis5, R.drawable.tapis6, R.drawable.tapis7, R.drawable.tapis8,
                             R.drawable.tapis9, R.drawable.tapis11,R.drawable.tapis13,
                             R.drawable.tapis14, R.drawable.tapis15, R.drawable.tapis18, R.drawable.tapis19,
                             R.drawable.tapis20,
-                            R.drawable.tapis21, R.drawable.tapis22,R.drawable.tapis23, R.drawable.tapis24,
+                            R.drawable.tapis31, R.drawable.tapis22,R.drawable.tapis23, R.drawable.tapis24,
                             R.drawable.tapis25, R.drawable.tapis26, R.drawable.tapis27,
                             R.drawable.tapis28, R.drawable.tapis30, R.drawable.tapis16, R.drawable.tapis29,R.drawable.tapis17 };
 
@@ -180,20 +180,24 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
     public void onCameraViewStopped() {
     }
     int taskStatus = 0;
+    int uiStatus = 0 ;
     public Mat onCameraFrame(CvCameraViewFrame inputFrame) {
 
         final Mat rgba = inputFrame.rgba();
 
 
-        if (taskStatus == 0) {
-            new ImageInitAsyncTask().execute(rgba);
+        if (taskStatus == 0  ) {
+                new ImageInitAsyncTask().execute(rgba);
+
             if(tapisFound != null){
-                tapisFoundV2 = tapisFound;
-                if(tapisFound.isFound() ){
+                if(tapisFound.isFound()){
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ShowPopup(tapisFoundV2.getTapisMat())    ;                }
+                            uiStatus = 1;
+                                ShowPopup(tapisFound.getTapisMat())    ;
+
+                                        }
                     });}
             }
         }
@@ -208,7 +212,6 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
     //android:screenOrientation="landscape"
     public void ShowPopup(TapisMat tapisMat) {
         TextView txtclose;
-
         myDialog.setContentView(R.layout.popup_window);
         txtclose = myDialog.findViewById(R.id.txtclose);
         tapisNom = myDialog.findViewById(R.id.tapisNom);
@@ -224,6 +227,7 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
         txtclose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                uiStatus = 0;
                 myDialog.dismiss();
             }
         });

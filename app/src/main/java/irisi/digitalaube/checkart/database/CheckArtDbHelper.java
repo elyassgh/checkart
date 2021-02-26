@@ -13,6 +13,8 @@ import org.opencv.core.Mat;
 
 import java.io.ByteArrayOutputStream;
 
+import irisi.digitalaube.checkart.api.model.Motif;
+import irisi.digitalaube.checkart.api.model.Origine;
 import irisi.digitalaube.checkart.api.model.Tapis;
 import irisi.digitalaube.checkart.database.CheckArtContrat.CarpetTable;
 
@@ -47,18 +49,51 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
 
 
     // --------------------             Motif TABLE            -------------------------------------
-    public static final String SQL_CREATE_TABLE_MOTIF = "";
+    public static final String SQL_CREATE_TABLE_MOTIF ="CREATE TABLE "+CheckArtContrat.MotifTable
+            .TABLE_NAME+ " ( " + CheckArtContrat.MotifTable._ID + INT_TYPE +" PRIMARY KEY AUTOINCREMENT, " +
+            CheckArtContrat.MotifTable.COLUMN_NAME_MOTIF_SYMBOLE + TEXT_TYPE + ", " +
+            CheckArtContrat.MotifTable.COLUMN_NAME_MOTIF_SIGNIFICATION + TEXT_TYPE +  " )";
+
     public static final String SQL_DELETE_TABLE_MOTIF =
             "DROP TABLE IF EXISTS " + CheckArtContrat.MotifTable.TABLE_NAME;
+    // --
+    //
+    // ------------------ ---------------------------------- -------------------------------------
+   // --------------------             ORIGINE TABLE            -------------------------------------
+    public static final String SQL_CREATE_TABLE_ORIGINE ="CREATE TABLE "+CheckArtContrat.OrigineTable
+            .TABLE_NAME+ " ( " + CheckArtContrat.OrigineTable._ID + INT_TYPE +" PRIMARY KEY AUTOINCREMENT, " +
+            CheckArtContrat.OrigineTable.COLUMN_NAME_REGION + TEXT_TYPE + ", " +
+            CheckArtContrat.MotifTable.COLUMN_NAME_MOTIF_SIGNIFICATION + TEXT_TYPE +  " )";
+
+    public static final String SQL_DELETE_TABLE_ORIGINE=
+            "DROP TABLE IF EXISTS " + CheckArtContrat.OrigineTable.TABLE_NAME;
     // -------------------- ---------------------------------- -------------------------------------
+// --------------------             TAPISMOTIF TABLE            -------------------------------------
+    public static final String SQL_CREATE_TABLE_TAPISMOTIF ="CREATE TABLE "+CheckArtContrat.TapisMotifTable
+            .TABLE_NAME+ " ( " + CheckArtContrat.TapisMotifTable._ID + INT_TYPE +" PRIMARY KEY AUTOINCREMENT, " +
+            CheckArtContrat.TapisMotifTable.COLUMN_NAME_MOTIF+ INT_TYPE + ", " +
+            CheckArtContrat.TapisMotifTable.COLUMN_NAME_TAPIS + INT_TYPE + ", " +
+            "FOREIGN KEY ("+ CheckArtContrat.TapisMotifTable.COLUMN_NAME_TAPIS +") REFERENCES "+
+            CheckArtContrat.CarpetTable.TABLE_NAME + "(_id)" + ", "+
+            "FOREIGN KEY ("+ CheckArtContrat.TapisMotifTable.COLUMN_NAME_MOTIF +") REFERENCES "+
+            CheckArtContrat.MotifTable.TABLE_NAME + "(_id)" + " )";
 
+    public static final String SQL_DELETE_TABLE_TAPISMOTIF=
+            "DROP TABLE IF EXISTS " + CheckArtContrat.TapisMotifTable.TABLE_NAME;
+    // --
+    // --------------------             TAPISORIGINE TABLE            -------------------------------------
+    public static final String SQL_CREATE_TABLE_TAPISORIGINE ="CREATE TABLE "+CheckArtContrat.TapisOrigineTable
+            .TABLE_NAME+ " ( " + CheckArtContrat.TapisMotifTable._ID + INT_TYPE +" PRIMARY KEY AUTOINCREMENT, " +
+            CheckArtContrat.TapisOrigineTable.COLUMN_NAME_TAPIS+ INT_TYPE + ", " +
+            CheckArtContrat.TapisOrigineTable.COLUMN_NAME_ORIGINE + INT_TYPE +", "+
+            "FOREIGN KEY ("+ CheckArtContrat.TapisOrigineTable.COLUMN_NAME_TAPIS +") REFERENCES "+
+            CheckArtContrat.CarpetTable.TABLE_NAME + "(_id)" + ", "+
+     "FOREIGN KEY ("+ CheckArtContrat.TapisOrigineTable.COLUMN_NAME_ORIGINE +") REFERENCES "+
+            CheckArtContrat.OrigineTable.TABLE_NAME + "(_id)" + " )";
 
-
-    // --------------------          Caracteristique TABLE     -------------------------------------
-    public static final String SQL_CREATE_TABLE_CARACTERSTIQUE = "";
-    public static final String SQL_DELETE_TABLE_CARACTERSTIQUE =
-            "DROP TABLE IF EXISTS " + CheckArtContrat.CaracteristiqueTable.TABLE_NAME;
-    // -------------------- ---------------------------------- -------------------------------------
+    public static final String SQL_DELETE_TABLE_TAPISORIGINE=
+            "DROP TABLE IF EXISTS " + CheckArtContrat.TapisOrigineTable.TABLE_NAME;
+    // --
 
 
 
@@ -123,7 +158,7 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
         m.get(0, 0,bytes);
         insertCarpet(tapis, m.type(), m.cols(), m.rows(), bytes);
     }
-
+/////////////CRUD CarpetTable////////////////////////////
     public void insertCarpet(Tapis tapis, int t, int w, int h, byte[] bytes) throws SQLiteException {
         SQLiteDatabase database = this.getWritableDatabase();
 
@@ -229,6 +264,346 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
         db.delete(CheckArtContrat.CarpetTable.TABLE_NAME,"_id= ?", new String[] {String.valueOf(id)} );
         db.close();
     }
+/////////////////////////////////////////////////
+
+
+// ////////////////////////CRUD MotifTable////////////////////////////
+    public void insertMotif(String symbole, String signification) throws SQLiteException {
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues values = new  ContentValues();
+        values.put(CheckArtContrat.MotifTable.COLUMN_NAME_MOTIF_SYMBOLE, symbole );
+        values.put(CheckArtContrat.MotifTable.COLUMN_NAME_MOTIF_SIGNIFICATION, signification );
+
+        database.insertOrThrow(CheckArtContrat.MotifTable.TABLE_NAME, null, values );
+        database.close();
+    }
+
+    // find one carpet by id (row)
+    public Cursor findMotifById(Integer id) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+                CheckArtContrat.MotifTable.COLUMN_NAME_MOTIF_SYMBOLE,
+                CheckArtContrat.MotifTable.COLUMN_NAME_MOTIF_SIGNIFICATION,
+
+        };
+
+        String selection = CheckArtContrat.MotifTable._ID + " like ?";
+
+        String[] selectArgs = { String.valueOf(id) };
+
+        Cursor result = db.query(
+                CheckArtContrat.MotifTable.TABLE_NAME,
+                projection,
+                selection,
+                selectArgs,
+                null,
+                null,
+                null
+        );
+
+        result.close();
+
+        return result;
+    }
+
+    // find all carpets (rows)
+    public Cursor findAllMotifs() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+                CheckArtContrat.MotifTable.COLUMN_NAME_MOTIF_SYMBOLE,
+                CheckArtContrat.MotifTable.COLUMN_NAME_MOTIF_SIGNIFICATION,
+        };
+
+        Cursor result = db.query(
+                CheckArtContrat.MotifTable.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        return result;
+    }
+
+    // Update Carpet content
+   public void updateMotif(Integer id, String symbole, String signification) throws SQLiteException {
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+       values.put(CheckArtContrat.MotifTable.COLUMN_NAME_MOTIF_SYMBOLE, symbole);
+       values.put(CheckArtContrat.MotifTable.COLUMN_NAME_MOTIF_SIGNIFICATION, signification);
+
+        database.update(CheckArtContrat.MotifTable.TABLE_NAME,values,
+                CheckArtContrat.MotifTable._ID + "= ?", new String[] {String.valueOf(id)} );
+        database.close();
+    }
+
+    // delete carpet by id
+    public void deleteMotifWhereIdLike(Integer id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(CheckArtContrat.MotifTable.TABLE_NAME,"_id= ?", new String[] {String.valueOf(id)} );
+        db.close();
+    }
+/////////////////////////////////////////////
+
+
+// /////////////////CRUD OrigineTable////////////////////////////
+    public void insertOrigine(String region) throws SQLiteException {
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues values = new  ContentValues();
+        values.put(CheckArtContrat.OrigineTable.COLUMN_NAME_REGION, region );
+
+        database.insertOrThrow(CheckArtContrat.OrigineTable.TABLE_NAME, null, values );
+        database.close();
+    }
+
+    // find one carpet by id (row)
+    public Cursor findOrigineById(Integer id) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+                CheckArtContrat.OrigineTable.COLUMN_NAME_REGION,
+
+        };
+
+        String selection = CheckArtContrat.OrigineTable._ID + " like ?";
+
+        String[] selectArgs = { String.valueOf(id) };
+
+        Cursor result = db.query(
+                CheckArtContrat.OrigineTable.TABLE_NAME,
+                projection,
+                selection,
+                selectArgs,
+                null,
+                null,
+                null
+        );
+
+        result.close();
+
+        return result;
+    }
+
+    // find all carpets (rows)
+    public Cursor findAllOrigines() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+                CheckArtContrat.OrigineTable.COLUMN_NAME_REGION,
+        };
+
+        Cursor result = db.query(
+                CheckArtContrat.OrigineTable.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        return result;
+    }
+
+    // Update Carpet content
+   public void updateOrigine(String id, String region) throws SQLiteException {
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+       values.put(CheckArtContrat.OrigineTable.COLUMN_NAME_REGION, region);
+
+        database.update(CheckArtContrat.OrigineTable.TABLE_NAME,values,
+                CheckArtContrat.OrigineTable._ID + "= ?", new String[] {String.valueOf(id)} );
+        database.close();
+    }
+
+    // delete carpet by id
+    public void deleteOrigineWhereIdLike(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(CheckArtContrat.OrigineTable.TABLE_NAME,"_id= ?", new String[] {String.valueOf(id)} );
+        db.close();
+    }
+///////////////////////////////////////////////////////////////
+
+// /////////////////////////////////CRUD TapisMotifTable////////////////////////////
+    public void insertTapisMotif(Tapis tapis, Motif motif) throws SQLiteException {
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues values = new  ContentValues();
+        values.put(CheckArtContrat.TapisMotifTable.COLUMN_NAME_TAPIS, tapis.getId() );
+        values.put(CheckArtContrat.TapisMotifTable.COLUMN_NAME_MOTIF, motif.getId() );
+
+        database.insertOrThrow(CheckArtContrat.OrigineTable.TABLE_NAME, null, values );
+        database.close();
+    }
+
+    // find one carpet by id (row)
+    public Cursor findTapisMotifById(Integer id) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+                CheckArtContrat.TapisMotifTable.COLUMN_NAME_TAPIS,
+                CheckArtContrat.TapisMotifTable.COLUMN_NAME_MOTIF,
+
+        };
+
+        String selection = CheckArtContrat.TapisMotifTable._ID + " like ?";
+
+        String[] selectArgs = { String.valueOf(id) };
+
+        Cursor result = db.query(
+                CheckArtContrat.TapisMotifTable.TABLE_NAME,
+                projection,
+                selection,
+                selectArgs,
+                null,
+                null,
+                null
+        );
+
+        result.close();
+
+        return result;
+    }
+
+    // find all carpets (rows)
+    public Cursor findAllTapisMotifs() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+                CheckArtContrat.TapisMotifTable.COLUMN_NAME_TAPIS,
+                CheckArtContrat.TapisMotifTable.COLUMN_NAME_MOTIF,
+        };
+
+        Cursor result = db.query(
+                CheckArtContrat.TapisMotifTable.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        return result;
+    }
+
+    // Update Carpet content
+   public void updateTapisMotif(Integer id, Tapis tapis, Motif motif) throws SQLiteException {
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+       values.put(CheckArtContrat.TapisMotifTable.COLUMN_NAME_TAPIS, tapis.getId());
+       values.put(CheckArtContrat.TapisMotifTable.COLUMN_NAME_MOTIF, motif.getId());
+
+        database.update(CheckArtContrat.TapisMotifTable.TABLE_NAME,values,
+                CheckArtContrat.TapisMotifTable._ID + "= ?", new String[] {String.valueOf(id)} );
+        database.close();
+    }
+
+    // delete carpet by id
+    public void deleteTapisMotifWhereIdLike(Integer id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(CheckArtContrat.TapisMotifTable.TABLE_NAME,"_id= ?", new String[] {String.valueOf(id)} );
+        db.close();
+    }
+//////////////////////////////////////////////////////////////
+
+    // /////////////////////////////////CRUD TapisOrigineTable////////////////////////////
+    public void insertTapisOrigine(Tapis tapis, Origine origine) throws SQLiteException {
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues values = new  ContentValues();
+        values.put(CheckArtContrat.TapisOrigineTable.COLUMN_NAME_TAPIS, tapis.getId() );
+        values.put(CheckArtContrat.TapisOrigineTable.COLUMN_NAME_ORIGINE, origine.getId() );
+
+        database.insertOrThrow(CheckArtContrat.TapisOrigineTable.TABLE_NAME, null, values );
+        database.close();
+    }
+
+    // find one carpet by id (row)
+    public Cursor findTapisOrigineById(Integer id) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+                CheckArtContrat.TapisOrigineTable.COLUMN_NAME_TAPIS,
+                CheckArtContrat.TapisOrigineTable.COLUMN_NAME_ORIGINE,
+
+        };
+
+        String selection = CheckArtContrat.TapisOrigineTable._ID + " like ?";
+
+        String[] selectArgs = { String.valueOf(id) };
+
+        Cursor result = db.query(
+                CheckArtContrat.TapisOrigineTable.TABLE_NAME,
+                projection,
+                selection,
+                selectArgs,
+                null,
+                null,
+                null
+        );
+
+        result.close();
+
+        return result;
+    }
+
+    // find all carpets (rows)
+    public Cursor findAllTapisOrigines() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+                CheckArtContrat.TapisOrigineTable.COLUMN_NAME_TAPIS,
+                CheckArtContrat.TapisOrigineTable.COLUMN_NAME_ORIGINE,
+        };
+
+        Cursor result = db.query(
+                CheckArtContrat.TapisOrigineTable.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        return result;
+    }
+
+    // Update Carpet content
+    public void updateTapisOrigine(Integer id, Tapis tapis, Origine origine) throws SQLiteException {
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(CheckArtContrat.TapisOrigineTable.COLUMN_NAME_TAPIS, tapis.getId());
+        values.put(CheckArtContrat.TapisOrigineTable.COLUMN_NAME_ORIGINE, origine.getId());
+
+        database.update(CheckArtContrat.TapisOrigineTable.TABLE_NAME,values,
+                CheckArtContrat.TapisOrigineTable._ID + "= ?", new String[] {String.valueOf(id)} );
+        database.close();
+    }
+
+    // delete carpet by id
+    public void deleteTapisOrigineWhereIdLike(Integer id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(CheckArtContrat.TapisOrigineTable.TABLE_NAME,"_id= ?", new String[] {String.valueOf(id)} );
+        db.close();
+    }
+//////////////////////////////////////////////////////////////
+
 
     public  void deleteDb(){
         SQLiteDatabase  db = this.getWritableDatabase();
