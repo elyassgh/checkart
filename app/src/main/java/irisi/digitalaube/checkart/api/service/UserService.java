@@ -1,5 +1,8 @@
 package irisi.digitalaube.checkart.api.service;
 
+import java.util.List;
+
+import irisi.digitalaube.checkart.api.model.Tapis;
 import irisi.digitalaube.checkart.api.model.User;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -15,5 +18,10 @@ public interface UserService {
     // authUtils = 'Basic email:password'
     @GET("/checkart/api/user/login")
     Call<User> login(@Header("Authorization") String authToken);
+
+    @GET("/checkart/api/admin/tapis-all")
+    Call<List<Tapis>> getTapis();
+
+
 
 }

@@ -9,27 +9,40 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import org.opencv.core.Mat;
+
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import irisi.digitalaube.checkart.api.model.Tapis;
+import irisi.digitalaube.checkart.database.CheckArtContrat.CarpetTable;
+
 public class CheckArtDbHelper extends SQLiteOpenHelper {
 
     public static final int DATA_BASE_VERSION = 1;
-    public static final String DATA_BASE_NAME = "checkart";
+    public static final String DATA_BASE_NAME = "checkar";
     public static final String TEXT_TYPE = " TEXT"; // Works for date also !
     public static final String INT_TYPE = " INTEGER";
-    public static final String BLOB_TYPE = " BLOB";
-    public static final String UNIQUE_CONSTRAINT = " UNIQUE";
+    public static final String FLOAT_TYPE = " INTEGER";
+    public static final String BLOB_TYPE = " byte[] bytes";
+    public static final String UNIQUE_CONSTRAINT = "UNIQUE";
 
 
     // --------------------             Carpet-Image TABLE            -------------------------------------
     public static final String SQL_CREATE_TABLE_CARPET =
-            "CREATE TABLE " + CheckArtContrat.CarpetTable.TABLE_NAME + "(" +
-                    CheckArtContrat.CarpetTable._ID + INT_TYPE +" PRIMARY KEY AUTOINCREMENT," +
-                    CheckArtContrat.CarpetTable.COLUMN_NAME_CARPET_NAME + TEXT_TYPE + "," +
-                    CheckArtContrat.CarpetTable.COLUMN_NAME_CARPET_IMAGE  + BLOB_TYPE + "," +
-                    CheckArtContrat.CarpetTable.COLUMN_NAME_CARPET_ORIGINE + TEXT_TYPE + ")";
+            "CREATE TABLE " + CheckArtContrat.CarpetTable.TABLE_NAME + " ( " +
+                    CheckArtContrat.CarpetTable._ID + INT_TYPE +" PRIMARY KEY AUTOINCREMENT, " +
+                    CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_NAME + TEXT_TYPE + ", " +
+                    CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_PHOTO + BLOB_TYPE + ", " +
+                    CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_DESCRIPTION+ TEXT_TYPE + ", "+
+                    CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_COULEUR+ TEXT_TYPE + ", "+
+                    CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_TAILLE+ FLOAT_TYPE +  ", "+
+                    CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_URI+ TEXT_TYPE +  ", "+
+                    CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_W1+ INT_TYPE +  ", "+
+                    CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_W2+ INT_TYPE +  ", "+
+                    CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_W3+ INT_TYPE +
+                    " )";
     public static final String SQL_DELETE_TABLE_CARPET =
             "DROP TABLE IF EXISTS " + CheckArtContrat.CarpetTable.TABLE_NAME;
     // -------------------- ---------------------------------- -------------------------------------
@@ -105,15 +118,26 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
     // ----------------------------  Image Table CRUD :  --------------------------------------------
 
     // Insert New Image
-    public void insertCarpet(String carpet_name, Bitmap carpet_image, String carpet_origin) throws SQLiteException {
+
+    public void dbput(Tapis tapis, Mat m) {
+        long nbytes = m.total() * m.elemSize();
+        byte[] bytes = new byte[ (int)nbytes ];
+        m.get(0, 0,bytes);
+        insertCarpet(tapis, m.type(), m.cols(), m.rows(), bytes);
+    }
+
+    public void insertCarpet(Tapis tapis, int t, int w, int h, byte[] bytes) throws SQLiteException {
         SQLiteDatabase database = this.getWritableDatabase();
 
         ContentValues values = new  ContentValues();
-
-        values.put(CheckArtContrat.CarpetTable.COLUMN_NAME_CARPET_NAME, carpet_name);
-        values.put(CheckArtContrat.CarpetTable.COLUMN_NAME_CARPET_IMAGE, DbBitmapUtility.getBytes(carpet_image));
-        values.put(CheckArtContrat.CarpetTable.COLUMN_NAME_CARPET_ORIGINE, carpet_origin);
-
+        values.put(CarpetTable.COLUMN_NAME_TAPIS_NAME, tapis.getNom());
+        values.put(CarpetTable.COLUMN_NAME_TAPIS_DESCRIPTION, tapis.getDescription());
+        values.put(CarpetTable.COLUMN_NAME_TAPIS_COULEUR, tapis.getCouleur());
+        values.put(CarpetTable.COLUMN_NAME_TAPIS_W1, t);
+        values.put(CarpetTable.COLUMN_NAME_TAPIS_W2, w);
+        values.put(CarpetTable.COLUMN_NAME_TAPIS_W3, h);
+        values.put(CarpetTable.COLUMN_NAME_TAPIS_PHOTO, bytes);
+        values.put(CarpetTable.COLUMN_NAME_TAPIS_URI, tapis.getUri());
         database.insertOrThrow(CheckArtContrat.CarpetTable.TABLE_NAME, null, values );
         database.close();
     }
@@ -124,9 +148,13 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] projection = {
-                CheckArtContrat.CarpetTable.COLUMN_NAME_CARPET_NAME,
-                CheckArtContrat.CarpetTable.COLUMN_NAME_CARPET_IMAGE,
-                CheckArtContrat.CarpetTable.COLUMN_NAME_CARPET_ORIGINE,
+                CarpetTable.COLUMN_NAME_TAPIS_NAME,
+                CarpetTable.COLUMN_NAME_TAPIS_DESCRIPTION,
+                CarpetTable.COLUMN_NAME_TAPIS_PHOTO,
+                CarpetTable.COLUMN_NAME_TAPIS_W1,
+                CarpetTable.COLUMN_NAME_TAPIS_W2,
+                CarpetTable.COLUMN_NAME_TAPIS_W3,
+
         };
 
         String selection = CheckArtContrat.CarpetTable._ID + " like ?";
@@ -154,9 +182,12 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] projection = {
-                CheckArtContrat.CarpetTable.COLUMN_NAME_CARPET_NAME,
-                CheckArtContrat.CarpetTable.COLUMN_NAME_CARPET_IMAGE,
-                CheckArtContrat.CarpetTable.COLUMN_NAME_CARPET_ORIGINE,
+                CarpetTable.COLUMN_NAME_TAPIS_NAME,
+                CarpetTable.COLUMN_NAME_TAPIS_DESCRIPTION,
+                CarpetTable.COLUMN_NAME_TAPIS_W1,
+                CarpetTable.COLUMN_NAME_TAPIS_W2,
+                CarpetTable.COLUMN_NAME_TAPIS_W3,
+                CarpetTable.COLUMN_NAME_TAPIS_PHOTO
         };
 
         Cursor result = db.query(
@@ -168,22 +199,25 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
                 null,
                 null
         );
-
-        result.close();
-
         return result;
     }
 
     // Update Carpet content
-    public void updateCarpet(Long id, String carpet_name, Bitmap carpet_image, String carpet_origin) throws SQLiteException {
+   public void updateCarpet(Tapis tapis) throws SQLiteException {
         SQLiteDatabase database = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-
-        values.put(CheckArtContrat.CarpetTable.COLUMN_NAME_CARPET_IMAGE, DbBitmapUtility.getBytes(carpet_image));
-
+       values.put(CarpetTable.COLUMN_NAME_TAPIS_NAME, tapis.getNom());
+       values.put(CarpetTable.COLUMN_NAME_TAPIS_DESCRIPTION, tapis.getDescription());
+       values.put(CarpetTable.COLUMN_NAME_TAPIS_TAILLE, tapis.getTaille());
+       values.put(CarpetTable.COLUMN_NAME_TAPIS_COULEUR, tapis.getCouleur());
+       values.put(CarpetTable.COLUMN_NAME_TAPIS_W1, tapis.getW1());
+       values.put(CarpetTable.COLUMN_NAME_TAPIS_W2, tapis.getW2());
+       values.put(CarpetTable.COLUMN_NAME_TAPIS_W3, tapis.getW3());
+       values.put(CarpetTable.COLUMN_NAME_TAPIS_PHOTO, tapis.getPhoto());
+       values.put(CarpetTable.COLUMN_NAME_TAPIS_URI, tapis.getUri());
         database.update(CheckArtContrat.CarpetTable.TABLE_NAME,values,
-                CheckArtContrat.CarpetTable._ID + "= ?", new String[] {String.valueOf(id)} );
+                CheckArtContrat.CarpetTable._ID + "= ?", new String[] {String.valueOf(tapis.getId())} );
         database.close();
     }
 
@@ -194,11 +228,14 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-
+    public  void deleteDb(){
+        SQLiteDatabase  db = this.getWritableDatabase();
+        db.delete(CheckArtContrat.CarpetTable.TABLE_NAME, null, null);
+    }
 
     // ----> find Images as a bitmap objects :
 
-
+/*
     // find one image by id (bitmap)
     public Bitmap findBitmapImageById(Integer id) {
         Cursor img = this.findCarpetById(id);
@@ -217,7 +254,7 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
         }
 
         return result;
-    }
+    }*/
     // ----------------------------  Image Table CRUD .  --------------------------------------------
 
 

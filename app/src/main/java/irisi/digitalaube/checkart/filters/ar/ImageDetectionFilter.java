@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.AbstractWindowedCursor;
 import android.database.Cursor;
 import android.database.CursorWindow;
+import android.graphics.Paint.Cap;
 import android.os.Build.VERSION_CODES;
 import android.util.Log;
 
@@ -39,6 +40,14 @@ import java.util.List;
 
 import irisi.digitalaube.checkart.SqlTable;
 import irisi.digitalaube.checkart.adapters.CameraProjectionAdapter;
+import irisi.digitalaube.checkart.api.model.Tapis;
+import irisi.digitalaube.checkart.api.model.TapisMat;
+import irisi.digitalaube.checkart.api.serviceImp.UserServiceImpl;
+import irisi.digitalaube.checkart.database.CheckArtContrat.CarpetTable;
+import irisi.digitalaube.checkart.database.CheckArtDbHelper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public final class ImageDetectionFilter implements ARFilter {
 
@@ -46,7 +55,7 @@ public final class ImageDetectionFilter implements ARFilter {
     // The reference image (this detector's target).
     private Mat mReferenceImage;
     List<Mat> mReferencesImage = new ArrayList<Mat>();
-    List<Mat> dbReferencesImages = new ArrayList<Mat>();
+    List<TapisMat> dbReferencesImages = new ArrayList<TapisMat>();
     // Features of the reference image.
     private final MatOfKeyPoint mReferenceKeypoints =
             new MatOfKeyPoint();
@@ -132,20 +141,65 @@ public final class ImageDetectionFilter implements ARFilter {
         // It is loaded in BGR (blue, green, red) format.
 
 
-        SqlTable sql = new SqlTable(context,"imgs",null,1);
+        UserServiceImpl.getTapis().enqueue(new Callback<List<Tapis>>() {
+            @Override
+            public void onResponse(Call<List<Tapis>> call, Response<List<Tapis>> response) {
+                if (!response.isSuccessful()) {
 
-      sql.deleteDb();
+                    Log.i(TAG, "Code: " + response.code());
+                    return;
+                }
+                List<Tapis> tapis = response.body();
+
+                for(Tapis t: tapis){
+
+                    Log.i(TAG, "tapis "+ t.getNom());
+                    Log.i(TAG, "tapis "+ t.getPhoto());
+                    Log.i(TAG, "tapis "+ t.getDescription());
+                    Log.i(TAG, "tapis "+ t.getCouleur());
+                    Log.i(TAG, "tapis "+ t.getTaille());
+                    Log.i(TAG, "tapis "+ t.getUri());
+
+
+
+
+
+                }
+
+
+            }
+            @Override
+            public void onFailure(Call<List<Tapis>> call, Throwable t) {
+                Log.i(TAG, "failure");
+
+            }
+        });
+
+        CheckArtDbHelper sql = new CheckArtDbHelper(context);
+        sql.deleteDb();
+
+        Tapis tapis = new Tapis();
+        tapis.setNom("Tapis Azilal");
+        tapis.setCouleur("Rouse");
+        tapis.setDescription("Super cool !");
+        tapis.setTaille(25);
+        tapis.setUri("azilal");
+        sql.dbput(tapis,Utils.loadResource(context,
+                referenceImageResourceIDs[0],
+                Imgcodecs.CV_LOAD_IMAGE_COLOR) );
+
+      /* //
         for (int i = 0; i< referenceImageResourceIDs.length; i++){
 
-            sql.dbput("hello"+i,Utils.loadResource(context,
+            sql.dbput(tapis,Utils.loadResource(context,
                     referenceImageResourceIDs[i],
                     Imgcodecs.CV_LOAD_IMAGE_COLOR));
             Log.i(TAG, "That Works" + i);
-        }
+        }*/
 
 
 
-        Cursor cursor = sql.dbget();
+        Cursor cursor = sql.findAllCarpets();
         CursorWindow cw = new CursorWindow("test", 100 * 1024 * 1024);
         AbstractWindowedCursor ac = (AbstractWindowedCursor) cursor;
         ac.setWindow(cw);
@@ -156,13 +210,20 @@ public final class ImageDetectionFilter implements ARFilter {
             cursor.moveToFirst();
 
         while (cursor.isAfterLast() == false){
-            int t = cursor.getInt(0);
-            int w = cursor.getInt(1);
-            int h = cursor.getInt(2);
-            byte[] p = cursor.getBlob(3);
+            String nom = cursor.getString(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_NAME));
+            String desc = cursor.getString(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_DESCRIPTION));
+            int t = cursor.getInt(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_W1));
+            int w = cursor.getInt(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_W2));
+            int h = cursor.getInt(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_W3));
+            byte[] p = cursor.getBlob(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_PHOTO));
             Mat m = new Mat(h,w,t);
             m.put(0,0,p);
-            dbReferencesImages.add(m);
+
+            TapisMat tm = new TapisMat();
+            tm.setNom(nom);
+            tm.setDesc(desc);
+            tm.setMat(m);
+            dbReferencesImages.add(tm);
             Log.i(TAG, "Images Mat Blobs" + m.toString());
             cursor.moveToNext();
         }
@@ -188,11 +249,15 @@ public final class ImageDetectionFilter implements ARFilter {
 
     @Override
     public float[] getGLPose() {
-        return (mTargetFound ? mGLPose : null);
+        return (mTargetFound ? null : null);
     }
 
+
+
+
+
     @Override
-    public void apply(final Mat src, final Mat dst) {
+    public boolean apply(final Mat src, final Mat dst) {
 
         // Convert the scene to grayscale.
         Imgproc.cvtColor(src, mGraySrc, Imgproc.COLOR_RGBA2GRAY);
@@ -209,7 +274,7 @@ public final class ImageDetectionFilter implements ARFilter {
 //////////////Check in local
         for(int i =0; i< dbReferencesImages.size(); i++ ) {
 
-            mReferenceImage = dbReferencesImages.get(i);
+            mReferenceImage = dbReferencesImages.get(i).getMat();
             // Create grayscale and RGBA versions of the reference image.
             final Mat referenceImageGray = new Mat();
             Imgproc.cvtColor(mReferenceImage, referenceImageGray,
@@ -290,17 +355,12 @@ public final class ImageDetectionFilter implements ARFilter {
 
             // Attempt to find the target image's 3D pose in the scene.
             findPose();
-            //draw(src, dst);
-
             if(mTargetFound){
-                break;
+                return true;
             }
 
         }
-        // draw(src, dst);
-
-        // If the pose has not been found, draw a thumbnail of the
-        // target image.
+        return false;
     }
 
     private void findPose() {

@@ -2,10 +2,14 @@ package irisi.digitalaube.checkart;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.graphics.drawable.ColorDrawable;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -20,6 +24,7 @@ import androidx.annotation.RequiresApi;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
+import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Mat;
@@ -27,19 +32,23 @@ import org.opencv.core.Mat;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import irisi.digitalaube.checkart.adapters.CameraProjectionAdapter;
+import irisi.digitalaube.checkart.api.model.Tapis;
+import irisi.digitalaube.checkart.api.serviceImp.UserServiceImpl;
 import irisi.digitalaube.checkart.filters.ar.ARFilter;
 import irisi.digitalaube.checkart.filters.ar.ImageDetectionFilter;
 import irisi.digitalaube.checkart.renders.ARCubeRenderer;
 
 public class RealtimeActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2, View.OnTouchListener {
     private static final String TAG = "OCV::Activity";
+    private  boolean found;
     private ARFilter mFilter;
     private CameraView mOpenCvCameraView;
-
+    Dialog myDialog;
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this)  {
-        @RequiresApi(api = Build.VERSION_CODES.P)
+        @RequiresApi(api = VERSION_CODES.P)
         @Override
         public void onManagerConnected(int status)  {
             switch (status) {
@@ -49,8 +58,8 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
                     mOpenCvCameraView.enableView();
                     mOpenCvCameraView.setOnTouchListener(RealtimeActivity.this);
                     //Put data in database
-                    int[] tapis = {R.drawable.tapis31, R.drawable.tapis12, R.drawable.tapis1,
-                            R.drawable.tapis10,R.drawable.tapis2, R.drawable.tapis3, R.drawable.tapis4,
+                    int[] tapis = {R.drawable.tapis10,R.drawable.tapis31, R.drawable.tapis12, R.drawable.tapis1,
+                            R.drawable.tapis2, R.drawable.tapis3, R.drawable.tapis4,
                             R.drawable.tapis5, R.drawable.tapis6, R.drawable.tapis7, R.drawable.tapis8,
                             R.drawable.tapis9, R.drawable.tapis11,R.drawable.tapis13,
                             R.drawable.tapis14, R.drawable.tapis15, R.drawable.tapis18, R.drawable.tapis19,
@@ -94,6 +103,7 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        myDialog = new Dialog(this);
         Log.i(TAG, "called onCreate");
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -113,7 +123,7 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
                 FrameLayout.LayoutParams.MATCH_PARENT));
         layout.addView(glSurfaceView);
 
-       mCameraProjectionAdapter = new CameraProjectionAdapter();
+        mCameraProjectionAdapter = new CameraProjectionAdapter();
 
 
         mARRenderer = new ARCubeRenderer();
@@ -122,7 +132,6 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
 
         mARRenderer.scale = 0.5f;
         glSurfaceView.setRenderer(mARRenderer);
-
 
         mOpenCvCameraView = (CameraView) findViewById(R.id.activity_java_surface_view);
 
@@ -169,20 +178,44 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
     public void onCameraViewStopped() {
     }
     int taskStatus = 0;
-    public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
+    public Mat onCameraFrame(CvCameraViewFrame inputFrame) {
 
         final Mat rgba = inputFrame.rgba();
 
 
         if (taskStatus == 0) {
             new ImageInitAsyncTask().execute(rgba);
-
+            if(found){
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ShowPopup(4)    ;                }
+                });}
         }
+
+
+
 
         return rgba;
 
 
     }
+    //android:screenOrientation="landscape"
+    public void ShowPopup(int v) {
+        TextView txtclose;
+        myDialog.setContentView(R.layout.popup_window);
+        txtclose = myDialog.findViewById(R.id.txtclose);
+        //txtclose.setText("M");
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+    }
+
 
     final class ImageInitAsyncTask extends AsyncTask<Mat, String, String> {
 
@@ -200,7 +233,7 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
         @Override
         protected String doInBackground(Mat... mats) {
             mARRenderer.filter = mFilter;
-            mFilter.apply(
+            found =  mFilter.apply(
                     mats[0], mats[0]);
 
             return "Done ...";
@@ -226,4 +259,8 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
 
 
     }
+
+
+
+
 }

@@ -5,8 +5,10 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 import irisi.digitalaube.checkart.api.Server;
+import irisi.digitalaube.checkart.api.model.Tapis;
 import irisi.digitalaube.checkart.api.model.User;
 import irisi.digitalaube.checkart.api.service.UserService;
 import okhttp3.Credentials;
@@ -19,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserServiceImpl {
 
+    private static final String TAG = "USERSERVICEIMPL";
     private static UserService userService;
 
     public static void getClient() {
@@ -92,5 +95,13 @@ public class UserServiceImpl {
 
         return result[0];
     };
+
+    public static Call<List<Tapis>>  getTapis(){
+        getClient();
+        Call<List<Tapis>> call = userService.getTapis();
+        return  call;
+    };
+
+
 
 }

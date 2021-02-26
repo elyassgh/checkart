@@ -4,5 +4,10 @@
     <color name="colorTitle">#223263</color>
     <color name="colorText">#9098B1</color>
     <color name="colorDanger">#FB7181</color>
-
+    <color name="colorPrimaryDark">#27333f</color>
+    <color name="green">#45bc62</color>
+    <color name="bluelight">#49acd5</color>
+    <color name="orange">#eaad43</color>
+    <color name="colorAccent">#FF4080</color>
+    <color name="white">#FFFFFF</color>
 </resources>
