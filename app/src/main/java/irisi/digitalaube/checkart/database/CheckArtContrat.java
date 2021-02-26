@@ -26,13 +26,27 @@ public class CheckArtContrat {
 
     public static class MotifTable implements BaseColumns {
         public static final String TABLE_NAME = "Motif";
-        public static final String COLUMN_NAME_MOTIF_NAME = "motif_name";
+        public static final String COLUMN_NAME_MOTIF_SYMBOLE = "motif_symbole";
+        public static final String COLUMN_NAME_MOTIF_SIGNIFICATION = "motif_signification";
     }
 
-    public static class CaracteristiqueTable implements BaseColumns {
-        public static final String TABLE_NAME = "Caracteristique";
-        public static final String COLUMN_NAME_ORIGINE_NAME = "carct_name";
-
+    public static class OrigineTable implements BaseColumns {
+        public static final String TABLE_NAME = "Origine";
+        public static final String COLUMN_NAME_REGION = "motif_region";
     }
+
+    public static class TapisMotifTable implements BaseColumns {
+        public static final String TABLE_NAME = "tapis_motif";
+        public static final String COLUMN_NAME_MOTIF = "motif";
+        public static final String COLUMN_NAME_TAPIS = "tapis";
+    }
+
+    public static class TapisOrigineTable implements BaseColumns {
+        public static final String TABLE_NAME = "tapis_origine";
+        public static final String COLUMN_NAME_ORIGINE = "origine";
+        public static final String COLUMN_NAME_TAPIS = "tapis";
+    }
+
+
 
 }
