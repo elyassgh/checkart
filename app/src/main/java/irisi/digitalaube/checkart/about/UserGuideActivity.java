@@ -1,14 +1,12 @@
 package irisi.digitalaube.checkart.about;
 
-import irisi.digitalaube.checkart.R;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import irisi.digitalaube.checkart.R;
 import maes.tech.intentanim.CustomIntent;
 
 

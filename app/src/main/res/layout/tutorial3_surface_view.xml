@@ -13,6 +13,6 @@
         android:visibility="gone"
         android:id="@+id/activity_java_surface_view"
         opencv:show_fps="false"
-        opencv:camera_id="any" />
+        opencv:camera_id="any"/>
 
 </FrameLayout>

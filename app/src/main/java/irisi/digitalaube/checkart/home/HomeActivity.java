@@ -1,12 +1,5 @@
 package irisi.digitalaube.checkart.home;
 
-import irisi.digitalaube.checkart.R;
-import irisi.digitalaube.checkart.about.MenuActivity;
-import irisi.digitalaube.checkart.explore.ExploreActivity;
-import irisi.digitalaube.checkart.favoris.FavoriteActivity;
-import irisi.digitalaube.checkart.profile.ProfileMenuActivity;
-import maes.tech.intentanim.CustomIntent;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -26,6 +19,15 @@ import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
+
+import irisi.digitalaube.checkart.R;
+import irisi.digitalaube.checkart.RealtimeActivity;
+import irisi.digitalaube.checkart.about.MenuActivity;
+import irisi.digitalaube.checkart.explore.ExploreActivity;
+import irisi.digitalaube.checkart.favoris.FavoriteActivity;
+import irisi.digitalaube.checkart.profile.ProfileMenuActivity;
+import irisi.digitalaube.checkart.userhandler.LoginActivity;
+import maes.tech.intentanim.CustomIntent;
 
 public class HomeActivity extends Activity {
 
@@ -53,8 +55,10 @@ public class HomeActivity extends Activity {
                     if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                         requestPermissions(new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
                     } else {
-                        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+                        // Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        // startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+                        Intent intent = new Intent(HomeActivity.this, RealtimeActivity.class);
+                        startActivity(intent);
                     }
                 }
             }
@@ -109,17 +113,17 @@ public class HomeActivity extends Activity {
         }
     }
 
-    // Get captured image
+    /* Get captured image
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_PIC_REQUEST) {
             Bitmap photo = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
             // do something with photo
             // --> test
-            this.test.setImageBitmap(photo);
+            // this.test.setImageBitmap(photo);
         }
     }
-
+    */
 
     // Navigator
     public void navigate(Class<?> activity) {

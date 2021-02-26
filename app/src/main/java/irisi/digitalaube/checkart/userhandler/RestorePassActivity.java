@@ -1,9 +1,5 @@
 package irisi.digitalaube.checkart.userhandler;
 
-import irisi.digitalaube.checkart.R;
-import irisi.digitalaube.checkart.home.HomeActivity;
-import maes.tech.intentanim.CustomIntent;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,7 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import irisi.digitalaube.checkart.R;
+import maes.tech.intentanim.CustomIntent;
 
 public class RestorePassActivity extends Activity {
 

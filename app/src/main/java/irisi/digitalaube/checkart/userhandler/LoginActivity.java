@@ -3,17 +3,13 @@ package irisi.digitalaube.checkart.userhandler;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Set;
-
 import irisi.digitalaube.checkart.R;
-import irisi.digitalaube.checkart.RealtimeActivity;
 import irisi.digitalaube.checkart.home.HomeActivity;
 import maes.tech.intentanim.CustomIntent;
 
@@ -34,8 +30,8 @@ public class LoginActivity extends Activity {
         loginGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                Intent intent = new Intent(LoginActivity.this, RealtimeActivity.class);
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+               // Intent intent = new Intent(LoginActivity.this, RealtimeActivity.class);
                 startActivity(intent);
                 // Success ( BACK == EXIT )
                 finish();

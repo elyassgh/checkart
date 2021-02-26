@@ -1,8 +1,5 @@
 package irisi.digitalaube.checkart.profile;
 
-import irisi.digitalaube.checkart.R;
-import maes.tech.intentanim.CustomIntent;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -16,6 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Calendar;
+
+import irisi.digitalaube.checkart.R;
+import maes.tech.intentanim.CustomIntent;
 
 public class BirthdayPickerActivity extends Activity {
 

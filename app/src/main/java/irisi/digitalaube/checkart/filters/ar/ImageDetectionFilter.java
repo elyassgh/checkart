@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.AbstractWindowedCursor;
 import android.database.Cursor;
 import android.database.CursorWindow;
-import android.graphics.Paint.Cap;
 import android.os.Build.VERSION_CODES;
 import android.util.Log;
 
@@ -26,7 +25,6 @@ import org.opencv.core.MatOfPoint2f;
 import org.opencv.core.MatOfPoint3f;
 import org.opencv.core.Point;
 import org.opencv.core.Point3;
-import org.opencv.core.Scalar;
 import org.opencv.features2d.DescriptorExtractor;
 import org.opencv.features2d.DescriptorMatcher;
 import org.opencv.features2d.FeatureDetector;
@@ -35,10 +33,8 @@ import org.opencv.imgproc.Imgproc;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import irisi.digitalaube.checkart.SqlTable;
 import irisi.digitalaube.checkart.adapters.CameraProjectionAdapter;
 import irisi.digitalaube.checkart.api.model.Tapis;
 import irisi.digitalaube.checkart.api.model.TapisFound;

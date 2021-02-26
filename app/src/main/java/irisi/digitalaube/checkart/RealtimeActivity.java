@@ -8,10 +8,8 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.ColorDrawable;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -30,15 +28,10 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Mat;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 import irisi.digitalaube.checkart.adapters.CameraProjectionAdapter;
-import irisi.digitalaube.checkart.api.model.Tapis;
 import irisi.digitalaube.checkart.api.model.TapisFound;
 import irisi.digitalaube.checkart.api.model.TapisMat;
-import irisi.digitalaube.checkart.api.serviceImp.UserServiceImpl;
 import irisi.digitalaube.checkart.filters.ar.ARFilter;
 import irisi.digitalaube.checkart.filters.ar.ImageDetectionFilter;
 import irisi.digitalaube.checkart.renders.ARCubeRenderer;

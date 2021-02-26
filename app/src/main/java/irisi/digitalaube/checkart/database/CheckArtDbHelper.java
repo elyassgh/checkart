@@ -12,8 +12,6 @@ import android.graphics.BitmapFactory;
 import org.opencv.core.Mat;
 
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import irisi.digitalaube.checkart.api.model.Tapis;
 import irisi.digitalaube.checkart.database.CheckArtContrat.CarpetTable;
