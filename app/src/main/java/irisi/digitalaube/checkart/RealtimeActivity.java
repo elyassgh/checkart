@@ -36,6 +36,8 @@ import java.util.List;
 
 import irisi.digitalaube.checkart.adapters.CameraProjectionAdapter;
 import irisi.digitalaube.checkart.api.model.Tapis;
+import irisi.digitalaube.checkart.api.model.TapisFound;
+import irisi.digitalaube.checkart.api.model.TapisMat;
 import irisi.digitalaube.checkart.api.serviceImp.UserServiceImpl;
 import irisi.digitalaube.checkart.filters.ar.ARFilter;
 import irisi.digitalaube.checkart.filters.ar.ImageDetectionFilter;
@@ -44,6 +46,13 @@ import irisi.digitalaube.checkart.renders.ARCubeRenderer;
 public class RealtimeActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2, View.OnTouchListener {
     private static final String TAG = "OCV::Activity";
     private  boolean found;
+    private TapisFound tapisFound;
+    private TapisFound tapisFoundV2;
+
+    private  TextView tapisNom;
+    private  TextView tapisCouleur;
+    private  TextView tapisTaille;
+    private  TextView tapisDesc;
     private ARFilter mFilter;
     private CameraView mOpenCvCameraView;
     Dialog myDialog;
@@ -185,12 +194,15 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
 
         if (taskStatus == 0) {
             new ImageInitAsyncTask().execute(rgba);
-            if(found){
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ShowPopup(4)    ;                }
-                });}
+            if(tapisFound != null){
+                tapisFoundV2 = tapisFound;
+                if(tapisFound.isFound() ){
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ShowPopup(tapisFoundV2.getTapisMat())    ;                }
+                    });}
+            }
         }
 
 
@@ -201,10 +213,20 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
 
     }
     //android:screenOrientation="landscape"
-    public void ShowPopup(int v) {
+    public void ShowPopup(TapisMat tapisMat) {
         TextView txtclose;
+
         myDialog.setContentView(R.layout.popup_window);
         txtclose = myDialog.findViewById(R.id.txtclose);
+        tapisNom = myDialog.findViewById(R.id.tapisNom);
+        tapisCouleur  = myDialog.findViewById(R.id.tapisCouleur);
+        tapisTaille = myDialog.findViewById(R.id.tapisTaille);
+        tapisDesc = myDialog.findViewById(R.id.tapisDesc);
+        tapisNom.setText(tapisMat.getNom());
+        tapisCouleur.setText(tapisMat.getCouleur());
+        tapisTaille.setText("15");
+        tapisDesc.setText(tapisMat.getDesc());
+
         //txtclose.setText("M");
         txtclose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -233,7 +255,7 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
         @Override
         protected String doInBackground(Mat... mats) {
             mARRenderer.filter = mFilter;
-            found =  mFilter.apply(
+            tapisFound =  mFilter.apply(
                     mats[0], mats[0]);
 
             return "Done ...";

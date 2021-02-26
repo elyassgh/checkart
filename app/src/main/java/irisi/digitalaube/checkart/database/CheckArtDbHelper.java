@@ -133,6 +133,7 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
         values.put(CarpetTable.COLUMN_NAME_TAPIS_NAME, tapis.getNom());
         values.put(CarpetTable.COLUMN_NAME_TAPIS_DESCRIPTION, tapis.getDescription());
         values.put(CarpetTable.COLUMN_NAME_TAPIS_COULEUR, tapis.getCouleur());
+        values.put(CarpetTable.COLUMN_NAME_TAPIS_TAILLE, tapis.getTaille());
         values.put(CarpetTable.COLUMN_NAME_TAPIS_W1, t);
         values.put(CarpetTable.COLUMN_NAME_TAPIS_W2, w);
         values.put(CarpetTable.COLUMN_NAME_TAPIS_W3, h);
@@ -151,6 +152,7 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
                 CarpetTable.COLUMN_NAME_TAPIS_NAME,
                 CarpetTable.COLUMN_NAME_TAPIS_DESCRIPTION,
                 CarpetTable.COLUMN_NAME_TAPIS_PHOTO,
+                CarpetTable.COLUMN_NAME_TAPIS_TAILLE,
                 CarpetTable.COLUMN_NAME_TAPIS_W1,
                 CarpetTable.COLUMN_NAME_TAPIS_W2,
                 CarpetTable.COLUMN_NAME_TAPIS_W3,
@@ -184,6 +186,8 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
         String[] projection = {
                 CarpetTable.COLUMN_NAME_TAPIS_NAME,
                 CarpetTable.COLUMN_NAME_TAPIS_DESCRIPTION,
+                CarpetTable.COLUMN_NAME_TAPIS_COULEUR,
+                CarpetTable.COLUMN_NAME_TAPIS_TAILLE,
                 CarpetTable.COLUMN_NAME_TAPIS_W1,
                 CarpetTable.COLUMN_NAME_TAPIS_W2,
                 CarpetTable.COLUMN_NAME_TAPIS_W3,

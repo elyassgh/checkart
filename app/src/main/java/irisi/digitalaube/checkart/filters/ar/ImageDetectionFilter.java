@@ -41,6 +41,7 @@ import java.util.List;
 import irisi.digitalaube.checkart.SqlTable;
 import irisi.digitalaube.checkart.adapters.CameraProjectionAdapter;
 import irisi.digitalaube.checkart.api.model.Tapis;
+import irisi.digitalaube.checkart.api.model.TapisFound;
 import irisi.digitalaube.checkart.api.model.TapisMat;
 import irisi.digitalaube.checkart.api.serviceImp.UserServiceImpl;
 import irisi.digitalaube.checkart.database.CheckArtContrat.CarpetTable;
@@ -60,7 +61,7 @@ public final class ImageDetectionFilter implements ARFilter {
     private final MatOfKeyPoint mReferenceKeypoints =
             new MatOfKeyPoint();
     List<MatOfKeyPoint> mReferencesKeypoints = new ArrayList<MatOfKeyPoint>();
-
+   private TapisFound tapisFound;
     // Descriptors of the reference image's features.
     private final Mat mReferenceDescriptors = new Mat();
     List<Mat> mReferencesDescriptors = new ArrayList<Mat>();
@@ -178,14 +179,44 @@ public final class ImageDetectionFilter implements ARFilter {
         CheckArtDbHelper sql = new CheckArtDbHelper(context);
         sql.deleteDb();
 
-        Tapis tapis = new Tapis();
-        tapis.setNom("Tapis Azilal");
-        tapis.setCouleur("Rouse");
-        tapis.setDescription("Super cool !");
-        tapis.setTaille(25);
-        tapis.setUri("azilal");
-        sql.dbput(tapis,Utils.loadResource(context,
+        Tapis tapis1 = new Tapis();
+        tapis1.setNom("TAPIS BENI OUARAIN KILIM");
+        tapis1.setCouleur("Orange");
+        tapis1.setDescription("Grand tapis en laine orange avec . Laine de grande qualité, tapis ancien, fabriqué de façon\n" +
+                "artisanale par les femmes berbères de la région.");
+        tapis1.setTaille(25);
+        tapis1.setUri("azilal");
+        sql.dbput(tapis1,Utils.loadResource(context,
                 referenceImageResourceIDs[0],
+                Imgcodecs.CV_LOAD_IMAGE_COLOR) );
+
+
+
+        Tapis tapis2 = new Tapis();
+        tapis2.setNom("GRAND TAPIS ZANAFI");
+        tapis2.setCouleur("Noir, gris, blonc");
+        tapis2.setDescription(" Le tapis Zanafi se distingue par ses motifs. Sa technique de fabrication se rapproche de celle du \n" +
+                "Kilim marocain, à savoir tissé, ce qui permet un motif plus fin. Les tapis Zanafi ont pris le nom de la tribu \n" +
+                "Zanafi, dans le Haut Atlas du Maroc.La grande dimension de ce tapis donnera une impression de grandeur à votre \n" +
+                "séjour ou chambre et apportera une touche ethnique et authentique à votre intérieur. ");
+        tapis2.setTaille(25);
+        tapis2.setUri("azilal");
+        sql.dbput(tapis2,Utils.loadResource(context,
+                referenceImageResourceIDs[1],
+                Imgcodecs.CV_LOAD_IMAGE_COLOR) );
+
+
+
+        Tapis tapis3 = new Tapis();
+        tapis3.setNom("TAPIS BERBERE BOUJAD");
+        tapis3.setCouleur("Noir, Blanc");
+        tapis3.setDescription("Magnifique tapis berbère de la ville de Boujad, confectionné à la main par les femmes de cette région.\n" +
+                "Les tapis Boujad sont des tapis tissés de la région du Haouz.Riches et complexes en motifs géométriques, ils ne \n" +
+                "sont pas trop formels.");
+        tapis3.setTaille(25);
+        tapis3.setUri("azilal");
+        sql.dbput(tapis3,Utils.loadResource(context,
+                referenceImageResourceIDs[2],
                 Imgcodecs.CV_LOAD_IMAGE_COLOR) );
 
       /* //
@@ -212,6 +243,8 @@ public final class ImageDetectionFilter implements ARFilter {
         while (cursor.isAfterLast() == false){
             String nom = cursor.getString(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_NAME));
             String desc = cursor.getString(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_DESCRIPTION));
+            String couleur = cursor.getString(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_COULEUR));
+            float taille = cursor.getFloat(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_TAILLE));
             int t = cursor.getInt(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_W1));
             int w = cursor.getInt(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_W2));
             int h = cursor.getInt(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_W3));
@@ -222,6 +255,8 @@ public final class ImageDetectionFilter implements ARFilter {
             TapisMat tm = new TapisMat();
             tm.setNom(nom);
             tm.setDesc(desc);
+            tm.setCouleur(couleur);
+            tm.setTaille(taille);
             tm.setMat(m);
             dbReferencesImages.add(tm);
             Log.i(TAG, "Images Mat Blobs" + m.toString());
@@ -257,7 +292,7 @@ public final class ImageDetectionFilter implements ARFilter {
 
 
     @Override
-    public boolean apply(final Mat src, final Mat dst) {
+    public TapisFound apply(final Mat src, final Mat dst) {
 
         // Convert the scene to grayscale.
         Imgproc.cvtColor(src, mGraySrc, Imgproc.COLOR_RGBA2GRAY);
@@ -273,7 +308,8 @@ public final class ImageDetectionFilter implements ARFilter {
 
 //////////////Check in local
         for(int i =0; i< dbReferencesImages.size(); i++ ) {
-
+            this.tapisFound = new TapisFound();
+            tapisFound.setTapisMat(dbReferencesImages.get(i));
             mReferenceImage = dbReferencesImages.get(i).getMat();
             // Create grayscale and RGBA versions of the reference image.
             final Mat referenceImageGray = new Mat();
@@ -356,11 +392,13 @@ public final class ImageDetectionFilter implements ARFilter {
             // Attempt to find the target image's 3D pose in the scene.
             findPose();
             if(mTargetFound){
-                return true;
+                tapisFound.setFound(true);
+                return tapisFound;
             }
 
         }
-        return false;
+        tapisFound.setFound(false);
+        return tapisFound;
     }
 
     private void findPose() {

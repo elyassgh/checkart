@@ -4,6 +4,24 @@ import org.opencv.core.Mat;
 
 public class TapisMat {
     String nom;
+   String couleur;
+   float taille;
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
+    }
+
+    public float getTaille() {
+        return taille;
+    }
+
+    public void setTaille(float taille) {
+        this.taille = taille;
+    }
 
     public String getNom() {
         return nom;

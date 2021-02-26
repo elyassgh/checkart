@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="350dp"
     android:layout_height="475dp"
-    android:background="@color/colorPrimaryDark"
+    android:background="#000"
     android:padding="5dp"
     android:layout_gravity="center">
     <TextView
@@ -20,18 +20,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
+            android:id="@+id/tapisNom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Elina Grofild"
-            android:textStyle="bold"
-            android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:text="Pas trouvé !"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Montreal,Canada"
+            android:text="..."
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"/>
@@ -42,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:background="@color/orange"
+            android:background="#000"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_weight="1"
@@ -50,20 +52,21 @@
             android:layout_height="100dp">
 
             <TextView
+                android:id="@+id/tapisCouleur"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="150"
-                android:textSize="18sp"
-                android:textColor="@color/white"/>
+                android:text="..."
+                android:textColor="@color/white"
+                android:textSize="18sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Followers"
+                android:text="Couleur"
                 android:textSize="18sp"
                 android:textColor="@color/white"/>
         </LinearLayout>
         <LinearLayout
-            android:background="@color/green"
+            android:background="#000"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_weight="1"
@@ -71,15 +74,16 @@
             android:layout_height="100dp">
 
             <TextView
+                android:id="@+id/tapisTaille"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="19"
-                android:textSize="18sp"
-                android:textColor="@color/white"/>
+                android:text="..."
+                android:textColor="@color/white"
+                android:textSize="18sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cities"
+                android:text="Taille"
                 android:textSize="18sp"
                 android:textColor="@color/white"/>
         </LinearLayout>
@@ -87,22 +91,25 @@
             android:background="@color/bluelight"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:layout_width="0dp"
             android:layout_height="100dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="50"
-                android:textSize="18sp"
-                android:textColor="@color/white"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Posts"
-                android:textSize="18sp"
-                android:textColor="@color/white"/>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_weight="1"
+        android:background="#000"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView   
+            android:id="@+id/tapisDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="..."
+            android:textColor="@color/white"
+            android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>

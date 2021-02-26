@@ -2,6 +2,8 @@ package irisi.digitalaube.checkart.filters;
 
 import org.opencv.core.Mat;
 
+import irisi.digitalaube.checkart.api.model.TapisFound;
+
 public interface Filter {
-    public abstract boolean apply(final Mat src, final Mat dst);
+    public abstract TapisFound apply(final Mat src, final Mat dst);
 }
