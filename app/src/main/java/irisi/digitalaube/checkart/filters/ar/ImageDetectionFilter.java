@@ -5,12 +5,9 @@ import android.content.Context;
 import android.database.AbstractWindowedCursor;
 import android.database.Cursor;
 import android.database.CursorWindow;
-<<<<<<< HEAD
-=======
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint.Cap;
->>>>>>> 04203e82b127c6cb043cb4a8b3a14afd4e705746
 import android.os.Build.VERSION_CODES;
 import android.util.Base64;
 import android.util.Log;
@@ -200,7 +197,7 @@ public final class ImageDetectionFilter implements ARFilter {
 
         Tapis tapis2 = new Tapis();
         tapis2.setNom("GRAND TAPIS ZANAFI");
-        tapis2.setCouleur("Noir, gris, blonc");
+        tapis2.setCouleur("Black, Gray, DimGray");
         tapis2.setDescription(" Le tapis Zanafi se distingue par ses motifs. Sa technique de fabrication se rapproche de celle du \n" +
                 "Kilim marocain, à savoir tissé, ce qui permet un motif plus fin. Les tapis Zanafi ont pris le nom de la tribu \n" +
                 "Zanafi, dans le Haut Atlas du Maroc.La grande dimension de ce tapis donnera une impression de grandeur à votre \n" +
@@ -215,7 +212,7 @@ public final class ImageDetectionFilter implements ARFilter {
 
         Tapis tapis3 = new Tapis();
         tapis3.setNom("TAPIS BERBERE BOUJAD");
-        tapis3.setCouleur("Noir, Blanc");
+        tapis3.setCouleur("Black, White");
         tapis3.setDescription("Magnifique tapis berbère de la ville de Boujad, confectionné à la main par les femmes de cette région.\n" +
                 "Les tapis Boujad sont des tapis tissés de la région du Haouz.Riches et complexes en motifs géométriques, ils ne \n" +
                 "sont pas trop formels.");

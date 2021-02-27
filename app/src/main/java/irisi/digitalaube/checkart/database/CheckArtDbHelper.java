@@ -8,10 +8,16 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import org.opencv.core.Mat;
 
 import java.io.ByteArrayOutputStream;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
 
 import irisi.digitalaube.checkart.api.model.Motif;
 import irisi.digitalaube.checkart.api.model.Origine;
@@ -137,12 +143,17 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
         // convert from bitmap to byte array
         public static byte[] getBytes(Bitmap bitmap) {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 0, stream);
             return stream.toByteArray();
         }
         // convert from byte array to bitmap
+        @RequiresApi(api = Build.VERSION_CODES.O)
         public static Bitmap getImage(byte[] image) {
-            return BitmapFactory.decodeByteArray(image, 0, image.length);
+            Bitmap bmp = Bitmap.createBitmap(600, 600, Bitmap.Config.RGB_565);
+            ByteBuffer buffer = ByteBuffer.wrap(image);
+            bmp.copyPixelsFromBuffer(buffer);
+            return bmp;
+          //  return BitmapFactory.decodeByteArray(image, 0, image.length);
         }
     }
     // ---------------------------------------------------------------------------------------------
@@ -237,6 +248,37 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
                 null
         );
         return result;
+    }
+
+    // find carpets with certain colors
+    public Cursor findAllCarpetsWithColors(String[] colors) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] projection = {
+                CarpetTable.COLUMN_NAME_TAPIS_NAME,
+                CarpetTable.COLUMN_NAME_TAPIS_PHOTO
+        };
+
+        StringBuilder selection = new StringBuilder(CarpetTable.COLUMN_NAME_TAPIS_COULEUR + " like ? ");
+
+        if (colors.length > 1) {
+            for (int i = 0; i < colors.length - 1 ; i++) {
+                selection.append(" OR " + CarpetTable.COLUMN_NAME_TAPIS_COULEUR + " like ? ");
+            }
+        }
+
+        String[] selectArgs = colors;
+
+        return db.query(
+                CarpetTable.TABLE_NAME,
+                projection,
+                selection.toString(),
+                selectArgs,
+                null,
+                null,
+                null
+        );
     }
 
     // Update Carpet content
@@ -634,5 +676,27 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
     }*/
     // ----------------------------  Image Table CRUD .  --------------------------------------------
 
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public List<List<?>> findAllBitmapImagesWithColor(String[] colors) {
+        Cursor carpets = this.findAllCarpetsWithColors(colors);
+
+        List<List<?>> result = new ArrayList<>();
+
+        while (carpets.moveToNext()) {
+
+            List<Object> tmp = new ArrayList<>();
+
+            tmp.add(DbBitmapUtility.getImage(
+                    carpets.getBlob(carpets.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_PHOTO))));
+
+            tmp.add(carpets.getString(carpets.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_NAME)));
+
+            result.add(tmp);
+        }
+
+        return result;
+    }
 
 }

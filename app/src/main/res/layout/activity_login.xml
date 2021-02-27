@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:fontFamily="@font/poppins_regular"
-        android:text="@string/create_acc"
+        android:text="@string/signin_to_continue"
         android:textColor="@color/colorText"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"

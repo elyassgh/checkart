@@ -34,11 +34,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
         <activity android:name=".RealtimeActivity"/>
-=======
-        <activity android:name=".RealtimeActivity" />
->>>>>>> 04203e82b127c6cb043cb4a8b3a14afd4e705746
         <activity android:name=".profile.PasswordPickerActivity" />
         <activity android:name=".profile.PhonePickerActivity" />
         <activity android:name=".profile.EmailPickerActivity" />
