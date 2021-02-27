@@ -29,7 +29,6 @@ import org.opencv.core.MatOfPoint2f;
 import org.opencv.core.MatOfPoint3f;
 import org.opencv.core.Point;
 import org.opencv.core.Point3;
-import org.opencv.core.Scalar;
 import org.opencv.features2d.DescriptorExtractor;
 import org.opencv.features2d.DescriptorMatcher;
 import org.opencv.features2d.FeatureDetector;
@@ -38,10 +37,8 @@ import org.opencv.imgproc.Imgproc;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import irisi.digitalaube.checkart.SqlTable;
 import irisi.digitalaube.checkart.adapters.CameraProjectionAdapter;
 import irisi.digitalaube.checkart.api.model.Tapis;
 import irisi.digitalaube.checkart.api.model.TapisFound;
@@ -120,7 +117,7 @@ public final class ImageDetectionFilter implements ARFilter {
             0.0, 0.0, 0.0, 0.0);
 
     // An adaptor that provides the camera's projection matrix.
-    private final CameraProjectionAdapter mCameraProjectionAdapter;
+    private CameraProjectionAdapter mCameraProjectionAdapter;
     // The Euler angles of the detected target.
     private final MatOfDouble mRVec = new MatOfDouble();
     // The XYZ coordinates of the detected target.
@@ -132,7 +129,7 @@ public final class ImageDetectionFilter implements ARFilter {
     private  double realSize;
     // Whether the target is currently detected.
     private boolean mTargetFound = false;
-
+         private   CheckArtDbHelper sql;
     @RequiresApi(api = VERSION_CODES.P)
     public ImageDetectionFilter(final Context context,
                                 final int [] referenceImageResourceIDs,
@@ -144,9 +141,9 @@ public final class ImageDetectionFilter implements ARFilter {
         // Load the reference image from the app's resources.
         // It is loaded in BGR (blue, green, red) format.
 
-        CheckArtDbHelper sql = new CheckArtDbHelper(context);
+         sql = new CheckArtDbHelper(context);
         sql.deleteDb();
-      /*  UserServiceImpl.getTapis().enqueue(new Callback<List<Tapis>>() {
+       UserServiceImpl.getTapis().enqueue(new Callback<List<Tapis>>() {
             @Override
             public void onResponse(Call<List<Tapis>> call, Response<List<Tapis>> response) {
                 if (!response.isSuccessful()) {
@@ -170,7 +167,9 @@ public final class ImageDetectionFilter implements ARFilter {
                     Bitmap img = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                     Mat mat_img = new Mat();
                     Utils.bitmapToMat(img, mat_img);
-                    sql.dbput(t,mat_img);}
+
+                 // sql.dbput(t,mat_img);
+                        }
 
                 }
 
@@ -182,33 +181,40 @@ public final class ImageDetectionFilter implements ARFilter {
 
             }
         });
-*/
+
+
+
+
+
 
 
         Tapis tapis1 = new Tapis();
-        tapis1.setNom("TAPIS BENI OUARAIN KILIM");
+        tapis1.setNom("TAPIS MRIRT 100% LAINE");
         tapis1.setCouleur("Orange");
         tapis1.setDescription("Grand tapis en laine orange avec . Laine de grande qualité, tapis ancien, fabriqué de façon\n" +
                 "artisanale par les femmes berbères de la région.");
-        tapis1.setTaille(25);
+        tapis1.setTaille(" 315x185 cm");
+        tapis1.setOrigine("Origine: Mrirt");
+        tapis1.setMotif("Motifs: Losange, le losange ouvert représente \nla fécondité et la maternité.");
         tapis1.setUri("azilal");
         sql.dbput(tapis1,Utils.loadResource(context,
-                referenceImageResourceIDs[0],
+                referenceImageResourceIDs[2],
                 Imgcodecs.CV_LOAD_IMAGE_COLOR) );
-
 
 
         Tapis tapis2 = new Tapis();
         tapis2.setNom("GRAND TAPIS ZANAFI");
-        tapis2.setCouleur("Noir, gris, blonc");
+        tapis2.setCouleur("Noir, gris, blanc");
         tapis2.setDescription(" Le tapis Zanafi se distingue par ses motifs. Sa technique de fabrication se rapproche de celle du \n" +
                 "Kilim marocain, à savoir tissé, ce qui permet un motif plus fin. Les tapis Zanafi ont pris le nom de la tribu \n" +
                 "Zanafi, dans le Haut Atlas du Maroc.La grande dimension de ce tapis donnera une impression de grandeur à votre \n" +
                 "séjour ou chambre et apportera une touche ethnique et authentique à votre intérieur. ");
-        tapis2.setTaille(25);
+        tapis2.setTaille("315x185 cm");
+        tapis2.setOrigine("Origine: Haut Atlas marocain");
+        tapis2.setMotif("Motis: Losange, le losange représente \nla fécondité et la maternité");
         tapis2.setUri("azilal");
         sql.dbput(tapis2,Utils.loadResource(context,
-                referenceImageResourceIDs[1],
+                referenceImageResourceIDs[3],
                 Imgcodecs.CV_LOAD_IMAGE_COLOR) );
 
 
@@ -219,11 +225,19 @@ public final class ImageDetectionFilter implements ARFilter {
         tapis3.setDescription("Magnifique tapis berbère de la ville de Boujad, confectionné à la main par les femmes de cette région.\n" +
                 "Les tapis Boujad sont des tapis tissés de la région du Haouz.Riches et complexes en motifs géométriques, ils ne \n" +
                 "sont pas trop formels.");
-        tapis3.setTaille(25);
+        tapis3.setMotif("Motis: Lignes en forme de zig-zag, une ligne en forme de zig-zag ininterrompue cerne souvent le tapis. Pour certaines, \n" +
+                "c’est le ruisseau, également représenté par une ligne continue,\n"+" le serpent ou la famille.Magnifique tapis berbère de la ville de Boujad, confectionné à la main par les femmes de cette région.\n" +
+                "Les tapis Boujad sont des tapis tissés de la région du Haouz.Riches et complexes en motifs géométriques, ils ne\n" +
+                "sont pas trop formels.");
+
+        tapis3.setTaille("370x185 cm");
+        tapis3.setOrigine("Origine: Boujad");
         tapis3.setUri("azilal");
         sql.dbput(tapis3,Utils.loadResource(context,
                 referenceImageResourceIDs[4],
                 Imgcodecs.CV_LOAD_IMAGE_COLOR) );
+
+
 
       /* //
         for (int i = 0; i< referenceImageResourceIDs.length; i++){
@@ -250,7 +264,9 @@ public final class ImageDetectionFilter implements ARFilter {
             String nom = cursor.getString(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_NAME));
             String desc = cursor.getString(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_DESCRIPTION));
             String couleur = cursor.getString(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_COULEUR));
-            float taille = cursor.getFloat(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_TAILLE));
+            String taille = cursor.getString(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_TAILLE));
+            String origine = cursor.getString(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_ORIGINE));
+            String motif = cursor.getString(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_MOTIF));
             int t = cursor.getInt(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_W1));
             int w = cursor.getInt(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_W2));
             int h = cursor.getInt(cursor.getColumnIndex(CarpetTable.COLUMN_NAME_TAPIS_W3));
@@ -263,6 +279,8 @@ public final class ImageDetectionFilter implements ARFilter {
             tm.setDesc(desc);
             tm.setCouleur(couleur);
             tm.setTaille(taille);
+            tm.setOrigine(origine);
+            tm.setMotif(motif);
             tm.setMat(m);
             dbReferencesImages.add(tm);
             Log.i(TAG, "Images Mat Blobs" + m.toString());
@@ -287,6 +305,8 @@ public final class ImageDetectionFilter implements ARFilter {
 */
         mCameraProjectionAdapter = cameraProjectionAdapter;
     }
+
+
 
     @Override
     public float[] getGLPose() {

@@ -6,10 +6,10 @@ public class Tapis {
     private Long id;
     private String nom;
     private String description;
-    private float taille;
+    private String taille;
     private String couleur;
-    private List<TapisOrigine> tapis_origines;
-    private List<TapisMotif> tapis_motifs;
+   private  String origine;
+   private  String motif;
     private int w1;
     private int w2;
     private int w3;
@@ -17,7 +17,7 @@ public class Tapis {
     private String uri;
 
 
-    public Tapis(String nom, String description, float taille, String couleur, int w1, int w2, String photo, String uri) {
+    public Tapis(String nom, String description, String taille, String couleur, int w1, int w2, String photo, String uri) {
         this.nom = nom;
         this.description = description;
         this.taille = taille;
@@ -56,13 +56,6 @@ public class Tapis {
         this.description = description;
     }
 
-    public float getTaille() {
-        return taille;
-    }
-
-    public void setTaille(float taille) {
-        this.taille = taille;
-    }
 
     public String getCouleur() {
         return couleur;
@@ -70,22 +63,6 @@ public class Tapis {
 
     public void setCouleur(String couleur) {
         this.couleur = couleur;
-    }
-
-    public List<TapisOrigine> getTapis_origines() {
-        return tapis_origines;
-    }
-
-    public void setTapis_origines(List<TapisOrigine> tapis_origines) {
-        this.tapis_origines = tapis_origines;
-    }
-
-    public List<TapisMotif> getTapis_motifs() {
-        return tapis_motifs;
-    }
-
-    public void setTapis_motifs(List<TapisMotif> tapis_motifs) {
-        this.tapis_motifs = tapis_motifs;
     }
 
     public int getW1() {
@@ -126,5 +103,29 @@ public class Tapis {
 
     public void setUri(String uri) {
         this.uri = uri;
+    }
+
+    public String getOrigine() {
+        return origine;
+    }
+
+    public void setOrigine(String origine) {
+        this.origine = origine;
+    }
+
+    public String getMotif() {
+        return motif;
+    }
+
+    public void setMotif(String motif) {
+        this.motif = motif;
+    }
+
+    public String getTaille() {
+        return taille;
+    }
+
+    public void setTaille(String taille) {
+        this.taille = taille;
     }
 }

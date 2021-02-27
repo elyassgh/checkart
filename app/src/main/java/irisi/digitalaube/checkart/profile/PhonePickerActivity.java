@@ -1,14 +1,14 @@
 package irisi.digitalaube.checkart.profile;
 
-import irisi.digitalaube.checkart.R;
-import maes.tech.intentanim.CustomIntent;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import irisi.digitalaube.checkart.R;
+import maes.tech.intentanim.CustomIntent;
 
 public class PhonePickerActivity extends Activity {
 

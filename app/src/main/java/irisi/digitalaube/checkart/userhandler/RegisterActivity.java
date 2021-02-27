@@ -2,16 +2,12 @@ package irisi.digitalaube.checkart.userhandler;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Objects;
 
 import irisi.digitalaube.checkart.R;
 import irisi.digitalaube.checkart.database.CheckArtDbHelper;

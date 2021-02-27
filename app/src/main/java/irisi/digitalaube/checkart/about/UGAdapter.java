@@ -1,12 +1,13 @@
 package irisi.digitalaube.checkart.about;
 
-import irisi.digitalaube.checkart.R;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import irisi.digitalaube.checkart.R;
 
 public class UGAdapter extends BaseAdapter {
 

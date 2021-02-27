@@ -3,16 +3,12 @@ package irisi.digitalaube.checkart.api.serviceImp;
 import android.util.Base64;
 import android.util.Log;
 
-import java.io.IOException;
-import java.security.Principal;
 import java.util.List;
 
 import irisi.digitalaube.checkart.api.Server;
 import irisi.digitalaube.checkart.api.model.Tapis;
 import irisi.digitalaube.checkart.api.model.User;
 import irisi.digitalaube.checkart.api.service.UserService;
-import okhttp3.Credentials;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

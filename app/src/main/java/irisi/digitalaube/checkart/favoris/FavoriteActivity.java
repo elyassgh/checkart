@@ -1,12 +1,5 @@
 package irisi.digitalaube.checkart.favoris;
 
-import irisi.digitalaube.checkart.R;
-import irisi.digitalaube.checkart.about.MenuActivity;
-import irisi.digitalaube.checkart.explore.ExploreActivity;
-import irisi.digitalaube.checkart.home.HomeActivity;
-import irisi.digitalaube.checkart.profile.ProfileMenuActivity;
-import maes.tech.intentanim.CustomIntent;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,6 +16,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import irisi.digitalaube.checkart.R;
+import irisi.digitalaube.checkart.about.MenuActivity;
+import irisi.digitalaube.checkart.explore.ExploreActivity;
+import irisi.digitalaube.checkart.home.HomeActivity;
+import irisi.digitalaube.checkart.profile.ProfileMenuActivity;
+import maes.tech.intentanim.CustomIntent;
 
 
 public class FavoriteActivity extends Activity {

@@ -3,9 +3,12 @@ package irisi.digitalaube.checkart.api.model;
 import org.opencv.core.Mat;
 
 public class TapisMat {
-    String nom;
-   String couleur;
-   float taille;
+    private String nom;
+    private String description;
+    private String taille;
+    private String couleur;
+    private  String origine;
+    private  String motif;
 
     public String getCouleur() {
         return couleur;
@@ -13,14 +16,6 @@ public class TapisMat {
 
     public void setCouleur(String couleur) {
         this.couleur = couleur;
-    }
-
-    public float getTaille() {
-        return taille;
-    }
-
-    public void setTaille(float taille) {
-        this.taille = taille;
     }
 
     public String getNom() {
@@ -49,4 +44,36 @@ public class TapisMat {
 
     String desc;
     Mat mat;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setTaille(String taille) {
+        this.taille = taille;
+    }
+
+    public String getOrigine() {
+        return origine;
+    }
+
+    public void setOrigine(String origine) {
+        this.origine = origine;
+    }
+
+    public String getMotif() {
+        return motif;
+    }
+
+    public void setMotif(String motif) {
+        this.motif = motif;
+    }
+
+    public String getTaille() {
+        return taille;
+    }
 }

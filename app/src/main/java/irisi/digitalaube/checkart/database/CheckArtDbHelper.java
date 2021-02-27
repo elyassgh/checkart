@@ -12,8 +12,6 @@ import android.graphics.BitmapFactory;
 import org.opencv.core.Mat;
 
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import irisi.digitalaube.checkart.api.model.Motif;
 import irisi.digitalaube.checkart.api.model.Origine;
@@ -23,7 +21,7 @@ import irisi.digitalaube.checkart.database.CheckArtContrat.CarpetTable;
 public class CheckArtDbHelper extends SQLiteOpenHelper {
 
     public static final int DATA_BASE_VERSION = 1;
-    public static final String DATA_BASE_NAME = "checkar";
+    public static final String DATA_BASE_NAME = "checkartr";
     public static final String TEXT_TYPE = " TEXT"; // Works for date also !
     public static final String INT_TYPE = " INTEGER";
     public static final String FLOAT_TYPE = " INTEGER";
@@ -39,7 +37,9 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
                     CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_PHOTO + BLOB_TYPE + ", " +
                     CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_DESCRIPTION+ TEXT_TYPE + ", "+
                     CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_COULEUR+ TEXT_TYPE + ", "+
-                    CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_TAILLE+ FLOAT_TYPE +  ", "+
+                    CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_ORIGINE+ TEXT_TYPE + ", "+
+                    CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_MOTIF+ TEXT_TYPE + ", "+
+                    CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_TAILLE+ TEXT_TYPE +  ", "+
                     CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_URI+ TEXT_TYPE +  ", "+
                     CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_W1+ INT_TYPE +  ", "+
                     CheckArtContrat.CarpetTable.COLUMN_NAME_TAPIS_W2+ INT_TYPE +  ", "+
@@ -169,6 +169,8 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
         values.put(CarpetTable.COLUMN_NAME_TAPIS_DESCRIPTION, tapis.getDescription());
         values.put(CarpetTable.COLUMN_NAME_TAPIS_COULEUR, tapis.getCouleur());
         values.put(CarpetTable.COLUMN_NAME_TAPIS_TAILLE, tapis.getTaille());
+        values.put(CarpetTable.COLUMN_NAME_TAPIS_ORIGINE, tapis.getOrigine());
+        values.put(CarpetTable.COLUMN_NAME_TAPIS_MOTIF, tapis.getMotif());
         values.put(CarpetTable.COLUMN_NAME_TAPIS_W1, t);
         values.put(CarpetTable.COLUMN_NAME_TAPIS_W2, w);
         values.put(CarpetTable.COLUMN_NAME_TAPIS_W3, h);
@@ -223,6 +225,8 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
                 CarpetTable.COLUMN_NAME_TAPIS_DESCRIPTION,
                 CarpetTable.COLUMN_NAME_TAPIS_COULEUR,
                 CarpetTable.COLUMN_NAME_TAPIS_TAILLE,
+                CarpetTable.COLUMN_NAME_TAPIS_ORIGINE,
+                CarpetTable.COLUMN_NAME_TAPIS_MOTIF,
                 CarpetTable.COLUMN_NAME_TAPIS_W1,
                 CarpetTable.COLUMN_NAME_TAPIS_W2,
                 CarpetTable.COLUMN_NAME_TAPIS_W3,

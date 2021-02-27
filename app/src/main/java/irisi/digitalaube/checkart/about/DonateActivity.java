@@ -1,15 +1,14 @@
 package irisi.digitalaube.checkart.about;
 
-import irisi.digitalaube.checkart.R;
-import maes.tech.intentanim.CustomIntent;
-
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import irisi.digitalaube.checkart.R;
+import maes.tech.intentanim.CustomIntent;
 
 public class DonateActivity extends Activity {
 

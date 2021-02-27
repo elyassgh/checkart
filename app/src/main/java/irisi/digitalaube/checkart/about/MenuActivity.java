@@ -1,12 +1,5 @@
 package irisi.digitalaube.checkart.about;
 
-import irisi.digitalaube.checkart.R;
-import irisi.digitalaube.checkart.explore.ExploreActivity;
-import irisi.digitalaube.checkart.favoris.FavoriteActivity;
-import irisi.digitalaube.checkart.home.HomeActivity;
-import irisi.digitalaube.checkart.profile.ProfileMenuActivity;
-import maes.tech.intentanim.CustomIntent;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import irisi.digitalaube.checkart.R;
+import irisi.digitalaube.checkart.explore.ExploreActivity;
+import irisi.digitalaube.checkart.favoris.FavoriteActivity;
+import irisi.digitalaube.checkart.home.HomeActivity;
+import irisi.digitalaube.checkart.profile.ProfileMenuActivity;
+import maes.tech.intentanim.CustomIntent;
 
 public class MenuActivity extends Activity {
 

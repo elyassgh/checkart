@@ -8,10 +8,8 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.ColorDrawable;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -30,15 +28,10 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Mat;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 import irisi.digitalaube.checkart.adapters.CameraProjectionAdapter;
-import irisi.digitalaube.checkart.api.model.Tapis;
 import irisi.digitalaube.checkart.api.model.TapisFound;
 import irisi.digitalaube.checkart.api.model.TapisMat;
-import irisi.digitalaube.checkart.api.serviceImp.UserServiceImpl;
 import irisi.digitalaube.checkart.filters.ar.ARFilter;
 import irisi.digitalaube.checkart.filters.ar.ImageDetectionFilter;
 import irisi.digitalaube.checkart.renders.ARCubeRenderer;
@@ -52,7 +45,10 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
     private  TextView tapisNom;
     private  TextView tapisCouleur;
     private  TextView tapisTaille;
+    private  TextView tapisOrigine;
+    private  TextView tapisMotif;
     private  TextView tapisDesc;
+
     private ARFilter mFilter;
     private CameraView mOpenCvCameraView;
     Dialog myDialog;
@@ -67,15 +63,8 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
                     mOpenCvCameraView.enableView();
                     mOpenCvCameraView.setOnTouchListener(RealtimeActivity.this);
                     //Put data in database
-                    int[] tapis = {R.drawable.tapis10,R.drawable.tapis21, R.drawable.tapis12, R.drawable.tapis1,
-                            R.drawable.tapis2, R.drawable.tapis3, R.drawable.tapis4,
-                            R.drawable.tapis5, R.drawable.tapis6, R.drawable.tapis7, R.drawable.tapis8,
-                            R.drawable.tapis9, R.drawable.tapis11,R.drawable.tapis13,
-                            R.drawable.tapis14, R.drawable.tapis15, R.drawable.tapis18, R.drawable.tapis19,
-                            R.drawable.tapis20,
-                            R.drawable.tapis31, R.drawable.tapis22,R.drawable.tapis23, R.drawable.tapis24,
-                            R.drawable.tapis25, R.drawable.tapis26, R.drawable.tapis27,
-                            R.drawable.tapis28, R.drawable.tapis30, R.drawable.tapis16, R.drawable.tapis29,R.drawable.tapis17 };
+                    int[] tapis = {R.drawable.tapis10,R.drawable.tapis21, R.drawable.mrirt, R.drawable.zanafi,R.drawable.boujad
+                            };
 
                     try {
                         mFilter = new ImageDetectionFilter(
@@ -224,12 +213,13 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
         tapisNom = myDialog.findViewById(R.id.tapisNom);
         tapisCouleur  = myDialog.findViewById(R.id.tapisCouleur);
         tapisTaille = myDialog.findViewById(R.id.tapisTaille);
-        tapisDesc = myDialog.findViewById(R.id.tapisDesc);
+        tapisMotif = myDialog.findViewById(R.id.tapisMotif);
+        tapisOrigine =  myDialog.findViewById(R.id.tapisOrigine);
         tapisNom.setText(tapisMat.getNom());
+        tapisOrigine.setText(tapisMat.getOrigine());
         tapisCouleur.setText(tapisMat.getCouleur());
-        tapisTaille.setText("15");
-        tapisDesc.setText(tapisMat.getDesc());
-
+        tapisTaille.setText(tapisMat.getTaille());
+        tapisMotif.setText(tapisMat.getMotif());
         //txtclose.setText("M");
         txtclose.setOnClickListener(new View.OnClickListener() {
             @Override

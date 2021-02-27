@@ -1,8 +1,5 @@
 package irisi.digitalaube.checkart.favoris;
 
-import irisi.digitalaube.checkart.R;
-import maes.tech.intentanim.CustomIntent;
-
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -18,6 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
+
+import irisi.digitalaube.checkart.R;
+import maes.tech.intentanim.CustomIntent;
 
 
 public class FavoriteItemActivity extends Activity {
