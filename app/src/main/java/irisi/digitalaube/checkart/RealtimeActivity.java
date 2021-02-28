@@ -205,7 +205,6 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
 
 
     }
-    //android:screenOrientation="landscape"
     public void ShowPopup(TapisMat tapisMat) {
         TextView txtclose;
         myDialog.setContentView(R.layout.popup_window);
@@ -220,7 +219,6 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
         tapisCouleur.setText(tapisMat.getCouleur());
         tapisTaille.setText(tapisMat.getTaille());
         tapisMotif.setText(tapisMat.getMotif());
-        //txtclose.setText("M");
         txtclose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -265,13 +263,8 @@ public class RealtimeActivity extends Activity implements CameraBridgeViewBase.C
     @SuppressLint("SimpleDateFormat")
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-     /*   Log.i(TAG, "onTouch event");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-        String currentDateandTime = sdf.format(new Date());
-        String fileName = Environment.getExternalStorageDirectory().getPath() +
-                "/sample_picture_" + currentDateandTime + ".jpg";
-        mOpenCvCameraView.takePicture(fileName);
-        */
+      Log.i(TAG, "onTouch event");
+
         return true;
 
 

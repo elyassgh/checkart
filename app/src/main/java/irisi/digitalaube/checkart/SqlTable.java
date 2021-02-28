@@ -63,14 +63,6 @@ public class SqlTable extends SQLiteOpenHelper {
                 null, // g. order by
                 null); // h. limit
 
-
-        // int t = cursor.getInt(0);
-        //int w = cursor.getInt(1);
-        //int h = cursor.getInt(2);
-        // byte[] p = cursor.getBlob(3);
-        //  Mat m = new Mat(h,w,t);
-        // m.put(0,0,p);
-        //  Log.d("dbget("+name+")", m.toString());
         return cursor;
     }
 };

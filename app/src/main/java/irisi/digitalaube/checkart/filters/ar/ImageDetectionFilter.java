@@ -239,7 +239,7 @@ public final class ImageDetectionFilter implements ARFilter {
 
 
 
-      /* //
+      /*
         for (int i = 0; i< referenceImageResourceIDs.length; i++){
 
             sql.dbput(tapis,Utils.loadResource(context,
@@ -332,7 +332,6 @@ public final class ImageDetectionFilter implements ARFilter {
 
 
 
-//////////////Check in local
         for(int i =0; i< dbReferencesImages.size(); i++ ) {
             this.tapisFound = new TapisFound();
             mReferenceImage = dbReferencesImages.get(i).getMat();
