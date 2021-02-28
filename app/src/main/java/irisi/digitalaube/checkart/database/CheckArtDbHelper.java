@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -151,11 +152,20 @@ public class CheckArtDbHelper extends SQLiteOpenHelper {
         // convert from byte array to bitmap
         @RequiresApi(api = Build.VERSION_CODES.O)
         public static Bitmap getImage(byte[] image) {
-            Bitmap bmp = Bitmap.createBitmap(600, 600, Bitmap.Config.RGB_565);
+
+            Bitmap bmp = Bitmap.createBitmap(400, 400, Bitmap.Config.RGB_565);
             ByteBuffer buffer = ByteBuffer.wrap(image);
             bmp.copyPixelsFromBuffer(buffer);
             return bmp;
-          //  return BitmapFactory.decodeByteArray(image, 0, image.length);
+
+           /*
+           BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inDither = false;
+            options.inPreferredConfig = null;
+            options.inSampleSize = 4;
+            return BitmapFactory.decodeByteArray(image, 0, image.length, options);
+           */
+
         }
     }
     // ---------------------------------------------------------------------------------------------
