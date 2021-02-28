@@ -6,8 +6,14 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
+<<<<<<< HEAD
 8-->C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="30" />
 9-->C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
+=======
+8-->C:\Users\PC PRO ULTRA RAPIDE\Desktop\Nouveau dossier\v2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->C:\Users\PC PRO ULTRA RAPIDE\Desktop\Nouveau dossier\v2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
+>>>>>>> e5cc5f62a3b36facffc68b7417da2bede564f2d0
 10
 11</manifest>

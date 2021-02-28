@@ -1,5 +1,6 @@
 -- Merging decision tree log ---
 manifest
+<<<<<<< HEAD
 ADDED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
 INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
 INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
@@ -7,6 +8,15 @@ INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\An
 INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
 INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
 INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
+=======
+ADDED from C:\Users\PC PRO ULTRA RAPIDE\Desktop\Nouveau dossier\v2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
+INJECTED from C:\Users\PC PRO ULTRA RAPIDE\Desktop\Nouveau dossier\v2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
+INJECTED from C:\Users\PC PRO ULTRA RAPIDE\Desktop\Nouveau dossier\v2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
+INJECTED from C:\Users\PC PRO ULTRA RAPIDE\Desktop\Nouveau dossier\v2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
+INJECTED from C:\Users\PC PRO ULTRA RAPIDE\Desktop\Nouveau dossier\v2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
+INJECTED from C:\Users\PC PRO ULTRA RAPIDE\Desktop\Nouveau dossier\v2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
+INJECTED from C:\Users\PC PRO ULTRA RAPIDE\Desktop\Nouveau dossier\v2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:2:1-6:12
+>>>>>>> e5cc5f62a3b36facffc68b7417da2bede564f2d0
 	package
 		ADDED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml:3:7-27
 		INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
@@ -32,6 +42,12 @@ INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\An
 		ADDED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
 	android:minSdkVersion
+<<<<<<< HEAD
 		INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
 		ADDED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Belkoweb\Code\AR\V2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
+=======
+		INJECTED from C:\Users\PC PRO ULTRA RAPIDE\Desktop\Nouveau dossier\v2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
+		ADDED from C:\Users\PC PRO ULTRA RAPIDE\Desktop\Nouveau dossier\v2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\PC PRO ULTRA RAPIDE\Desktop\Nouveau dossier\v2\checkart\openCVLibrary340\src\main\AndroidManifest.xml
+>>>>>>> e5cc5f62a3b36facffc68b7417da2bede564f2d0

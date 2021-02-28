@@ -221,7 +221,7 @@ public final class ImageDetectionFilter implements ARFilter {
 
         Tapis tapis3 = new Tapis();
         tapis3.setNom("TAPIS BERBERE BOUJAD");
-        tapis3.setCouleur("Noir, Blanc");
+        tapis3.setCouleur("Black, White");
         tapis3.setDescription("Magnifique tapis berbère de la ville de Boujad, confectionné à la main par les femmes de cette région.\n" +
                 "Les tapis Boujad sont des tapis tissés de la région du Haouz.Riches et complexes en motifs géométriques, ils ne \n" +
                 "sont pas trop formels.");

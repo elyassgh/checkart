@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,11 +21,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import irisi.digitalaube.checkart.R;
 import irisi.digitalaube.checkart.about.MenuActivity;
+import irisi.digitalaube.checkart.database.CheckArtDbHelper;
 import irisi.digitalaube.checkart.favoris.FavoriteActivity;
 import irisi.digitalaube.checkart.home.HomeActivity;
 import irisi.digitalaube.checkart.profile.ProfileMenuActivity;
@@ -41,6 +49,8 @@ public class ExploreActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore);
+
+        CheckArtDbHelper dbHelper = new CheckArtDbHelper(this);
 
         // get Loaded User In memory : ------------------
         Bundle extras = getIntent().getExtras();
@@ -85,45 +95,40 @@ public class ExploreActivity extends Activity {
 
 
         // Render color palette search UI
-        for (final String searchColor : ColorSearch.COLOR_PALETTE) {
+        HashMap<String, String> map = ColorSearch.getColors();
+        Set<?> set = map.entrySet();
+        for (Object o : set) {
+
+            Map.Entry<String, String> mapColor = (Map.Entry<String, String>) o;
+            String searchColor = mapColor.getValue();
+
             View view  = inflater.inflate(R.layout.color_btn, search_colors, false);
             ImageButton imageButton = view.findViewById(R.id.color);
-            imageButton.setBackgroundColor(Color.parseColor(ColorSearch.COLOR_PREFIX + searchColor));
+            imageButton.setBackgroundColor(Color.parseColor(searchColor));
 
-            // TO-DO Later -->
-            // Ajax call to the server and render the result
-            // loader gif ( beforeSend function )
             imageButton.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onClick(View v) {
 
+                    String[] colorsInPicture = ColorSearch.findSimilars(searchColor , 0.2);
+
+                    for (String c : colorsInPicture) {
+                        Log.d("COLOR", c);
+                    }
+
+                    List<List<?>> result = dbHelper.findAllBitmapImagesWithColor(colorsInPicture);
+
                     // TO-DO Explore Query (With COLOR Hex Value)
 
-                    // demo : ----------------------------------------
-                        // get explore result --> delete later
-                        Object [][] result;
-                        switch (searchColor) {
-                            case "FFEBEE":
-                                result = exploreResult;
-                                break;
-                            case "FFCDD2":
-                                result = exploreResult2;
-                                break;
-                            case "EF9A9A":
-                                result = exploreResult3;
-                                break;
-                            default:
-                                result = exploreResultEmpty;
-                                break;
-                        }
-                    // demo .  ----------------------------------------
 
                     // render explore result in UI
                     renderExploreItems(result, inflater , rightSet , leftSet);
 
-                    ColorSearch.findSimilars(searchColor , 0.2);
-
                     Toast.makeText(ExploreActivity.this, "Explore pictures matches : " + searchColor , Toast.LENGTH_SHORT).show();
+
+                    // TO-DO : Search By Color
+
                 }
             });
 
@@ -171,7 +176,7 @@ public class ExploreActivity extends Activity {
     }
 
     // Explore Items Renderer
-    public void renderExploreItems (final Object[][] exploreResult, LayoutInflater inflater, LinearLayout rightSet, LinearLayout leftSet) {
+    public void renderExploreItems (List<List<?>> exploreResult, LayoutInflater inflater, LinearLayout rightSet, LinearLayout leftSet) {
 
         // Clear views
         rightSet.removeAllViews();
@@ -179,12 +184,12 @@ public class ExploreActivity extends Activity {
         emptySpan.removeAllViews();
 
         // Handle empty result :
-        if (exploreResult.length != 0) {
+        if (exploreResult.size() != 0) {
 
             // Clear empty span
             emptySpan.setVisibility(View.GONE);
 
-            for (int i=0 ; i < exploreResult.length ; i++) {
+            for (int i=0 ; i < exploreResult.size() ; i++) {
                 LinearLayout layout = (i % 2 == 0) ? rightSet : leftSet;
                 View view  = inflater.inflate(R.layout.explore_item, layout, false);
 
@@ -204,14 +209,14 @@ public class ExploreActivity extends Activity {
                                         // TO-DO Add Favorite Item to favorite list Query !!
 
                                         dialog.cancel();
-                                        Toast.makeText(ExploreActivity.this, "Item : " + (String) exploreResult[finalI][2] + " Added.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ExploreActivity.this, "Item : " + (String) exploreResult.get(finalI).get(1) + " Added.", Toast.LENGTH_SHORT).show();
                                     }
                                 })
                                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         //  Action for 'NO' Button
                                         dialog.cancel();
-                                        Toast.makeText(ExploreActivity.this, "Nothing : " +(String) exploreResult[finalI][2], Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ExploreActivity.this, "Nothing : " + (String) exploreResult.get(finalI).get(1), Toast.LENGTH_SHORT).show();
                                     }
                                 });
                         //Creating dialog box
@@ -224,10 +229,10 @@ public class ExploreActivity extends Activity {
                 });
 
                 ImageView image = view.findViewById(R.id.exp_item_img);
-                image.setImageBitmap( (Bitmap) exploreResult[i][0] );
+                image.setImageBitmap( (Bitmap) exploreResult.get(i).get(0));
 
                 TextView title = view.findViewById(R.id.exp_item_title);
-                title.setText( (String) exploreResult[i][1] );
+                title.setText( (String) exploreResult.get(i).get(1));
 
                 layout.addView(view);
             }
@@ -248,7 +253,7 @@ public class ExploreActivity extends Activity {
             Toast.makeText(ExploreActivity.this, "Nothing Found !" , Toast.LENGTH_SHORT).show();
         }
 
-        count.setText(String.valueOf(exploreResult.length).concat(" Results"));
+        count.setText(String.valueOf(exploreResult.size()).concat(" Results"));
 
     }
 

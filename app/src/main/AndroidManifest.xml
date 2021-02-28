@@ -35,6 +35,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RealtimeActivity" />
+
         <activity android:name=".profile.PasswordPickerActivity" />
         <activity android:name=".profile.PhonePickerActivity" />
         <activity android:name=".profile.EmailPickerActivity" />
