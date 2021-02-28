@@ -15,7 +15,7 @@ public interface UserService {
     @POST("/checkart/api/user/registration")
     Call<User> register(@Body User user);
 
-    // authUtils = 'Basic email:password'
+    // authToken = 'Basic email:password'
     @GET("/checkart/api/user/login")
     Call<User> login(@Header("Authorization") String authToken);
 

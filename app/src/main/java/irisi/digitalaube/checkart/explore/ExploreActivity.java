@@ -72,24 +72,9 @@ public class ExploreActivity extends Activity {
         // static data for demo purposes -----------------------------------------------------------
         Bitmap dummyImg = BitmapFactory.decodeResource(this.getResources(), R.drawable.tapis);
         final Object [][] exploreResult = {
-                {dummyImg , "Lorem1 Ipsum dolor sit ammet sacred bit qest", "#1"},
-                {dummyImg , "Lorem2 Ipsum dolor sit ammet sacred bit qest", "#2"},
-                {dummyImg , "Lorem3 Ipsum dolor sit ammet sacred bit qest", "#3"},
-                {dummyImg , "Lorem4 Ipsum dolor sit ammet sacred bit qest", "#4"},
-                {dummyImg , "Lorem5 Ipsum dolor sit ammet sacred bit qest", "#5"},
-                {dummyImg , "Lorem6 Ipsum dolor sit ammet sacred bit qest", "#6"},
-                {dummyImg , "Lorem7 Ipsum dolor sit ammet sacred bit qest", "#7"},
+                {dummyImg, "Lorem1 Ipsum dolor sit ammet sacred bit qest"},
+                {dummyImg, "Lorem2 Ipsum dolor sit ammet sacred bit qest"}
         };
-        final Object [][] exploreResult2 = {
-                {dummyImg , "Lorem1 Ipsum dolor sit ammet sacred bit qest", "#1"},
-                {dummyImg , "Lorem2 Ipsum dolor sit ammet sacred bit qest", "#2"},
-        };
-        final Object [][] exploreResult3 = {
-                {dummyImg , "Lorem1 Ipsum dolor sit ammet sacred bit qest", "#1"},
-                {dummyImg , "Lorem2 Ipsum dolor sit ammet sacred bit qest", "#2"},
-                {dummyImg , "Lorem3 Ipsum dolor sit ammet sacred bit qest", "#3"},
-        };
-        final Object [][] exploreResultEmpty = {};
         // -----------------------------------------------------------------------------------------
 
 

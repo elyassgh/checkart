@@ -65,7 +65,7 @@ public class HomeActivity extends Activity {
         });
 
         // Display container of the captured image, for demo purposes.
-        this.test = (ImageView) findViewById(R.id.test);
+        // this.test = (ImageView) findViewById(R.id.test);
 
         // Navigation
         BottomNavigationView navbar = findViewById(R.id.navbar);
